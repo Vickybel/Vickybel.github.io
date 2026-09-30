@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>victoriaisabel.cl &#183; Victoria Isabel</title>
+<meta name="description" content="Hoja de diseño de victoriaisabel.cl: flujo y pantallas del proyecto.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+  :root{color-scheme:light dark}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+</style>
+</head>
+<body>
+<a class="volver" href="../index.html">&#8592; Portafolio</a>
+<style>
+  .volver{position:fixed;top:14px;left:14px;z-index:99;font:600 12.5px/1 ui-sans-serif,system-ui,-apple-system,sans-serif;
+    text-decoration:none;padding:8px 14px;border-radius:999px;backdrop-filter:blur(10px);
+    background:color-mix(in srgb,Canvas 78%,transparent);color:CanvasText;
+    border:1px solid color-mix(in srgb,CanvasText 16%,transparent);transition:transform .25s,border-color .25s}
+  .volver:hover{transform:translateY(-1px);border-color:color-mix(in srgb,CanvasText 34%,transparent)}
+  .volver:focus-visible{outline:2px solid #EC4899;outline-offset:3px}
+  @media print{.volver{display:none}}
+</style>
+<style>
+  /* Paleta tomada de src/pages/index.astro */
+  :root {
+    --fondo: #FDF7F8;
+    --superficie: #FFFFFF;
+    --superficie-alt: #FCE7F3;
+    --texto: #2A1220;
+    --texto-suave: #6B5060;
+    --texto-tenue: #8A6B79;
+    --borde: #F7E9EE;
+    --borde-fuerte: #EBD3DD;
+    --acento: #EC4899;
+    --acento-hondo: #BE185D;
+    --acento-medio: #DB2777;
+    --acento-claro: #F472B6;
+    --acento-tenue: #FBCFE8;
+    --acento-texto: #FFFFFF;
+    --ciruela: #2A1220;
+    --marco: #3A1B2C;
+    --marco-texto: #B9909F;
+    --sombra: 0 1px 2px rgba(42,18,32,.05), 0 10px 30px rgba(42,18,32,.10);
+
+    --ui: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --fondo: #170B11; --superficie: #21121A; --superficie-alt: #2E1824;
+      --texto: #F6E7EE; --texto-suave: #C9A9B8; --texto-tenue: #967886;
+      --borde: #33202B; --borde-fuerte: #472F3C;
+      --acento: #F472B6; --acento-hondo: #F9A8D4; --acento-medio: #EC4899;
+      --acento-claro: #F9A8D4; --acento-tenue: #3D2130; --acento-texto: #170B11;
+      --ciruela: #F6E7EE;
+      --marco: #000000; --marco-texto: #8A6A78;
+      --sombra: 0 1px 2px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.55);
+    }
+  }
+  :root[data-theme="dark"] {
+    --fondo: #170B11; --superficie: #21121A; --superficie-alt: #2E1824;
+    --texto: #F6E7EE; --texto-suave: #C9A9B8; --texto-tenue: #967886;
+    --borde: #33202B; --borde-fuerte: #472F3C;
+    --acento: #F472B6; --acento-hondo: #F9A8D4; --acento-medio: #EC4899;
+    --acento-claro: #F9A8D4; --acento-tenue: #3D2130; --acento-texto: #170B11;
+    --ciruela: #F6E7EE;
+    --marco: #000000; --marco-texto: #8A6A78;
+    --sombra: 0 1px 2px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.55);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--fondo);
+    color: var(--texto);
+    font-family: var(--ui);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hoja { max-width: 1180px; margin: 0 auto; padding: 64px 28px 88px; }
+
+  /* ── Portada ─────────────────────────────────────────────────────────── */
+  .portada { margin-bottom: 72px; }
+  .marca {
+    font-size: clamp(40px, 8vw, 68px);
+    line-height: 1.02;
+    font-weight: 800;
+    letter-spacing: -.035em;
+    margin: 0 0 14px;
+  }
+  .lema {
+    font-size: clamp(17px, 2.2vw, 20px);
+    color: var(--texto-suave);
+    margin: 0 0 26px;
+    max-width: 48ch;
+    text-wrap: balance;
+  }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 5px 11px;
+    border: 1px solid var(--borde-fuerte);
+    border-radius: 999px;
+    color: var(--texto-suave);
+    background: var(--superficie);
+    white-space: nowrap;
+  }
+
+  section { margin-bottom: 76px; }
+
+  .rotulo {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--texto-tenue);
+    margin: 0 0 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .rotulo::after { content: ""; flex: 1; height: 1px; background: var(--borde-fuerte); }
+
+  .grupo { font-size: 13px; font-weight: 700; color: var(--texto-tenue); letter-spacing: .04em; text-transform: uppercase; margin: 0 0 18px; }
+
+  /* ── Mapa ────────────────────────────────────────────────────────────── */
+  .mapa-caja { overflow-x: auto; padding-bottom: 8px; }
+  .mapa { min-width: 880px; width: 100%; height: auto; display: block; }
+  .mapa text { font-family: var(--ui); }
+
+  /* ── Galería ─────────────────────────────────────────────────────────── */
+  .galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(430px, 1fr));
+    gap: 42px 30px;
+    margin-bottom: 56px;
+  }
+  .galeria:last-child { margin-bottom: 0; }
+  figure { margin: 0; display: flex; flex-direction: column; }
+  figcaption {
+    margin-top: 14px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--texto);
+  }
+  figcaption span {
+    display: block;
+    font-weight: 400;
+    font-size: 12px;
+    color: var(--texto-tenue);
+    margin-top: 2px;
+  }
+
+  /* ── La ventana ──────────────────────────────────────────────────────── */
+  .nave {
+    background: var(--marco);
+    border-radius: 12px;
+    padding: 0 0 7px;
+    box-shadow: var(--sombra);
+    overflow: hidden;
+  }
+  .barra { height: 32px; display: flex; align-items: center; gap: 7px; padding: 0 11px; }
+  .luz { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.22); flex: 0 0 auto; }
+  .ruta {
+    flex: 1; min-width: 0; height: 19px; margin-left: 6px;
+    border-radius: 5px; background: rgba(255,255,255,.11);
+    display: flex; align-items: center; padding: 0 9px;
+    font-family: var(--mono); font-size: 9.5px; color: var(--marco-texto);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .vidrio {
+    height: 372px;
+    margin: 0 7px;
+    border-radius: 6px;
+    background: var(--fondo);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .vidrio.blanca { background: var(--superficie); }
+  .lienzo { flex: 1; overflow: hidden; padding: 16px 20px; display: flex; flex-direction: column; gap: 11px; }
+
+  /* Cabecera del sitio */
+  .cab {
+    flex: 0 0 36px; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 20px; border-bottom: 1px solid var(--borde); background: var(--superficie);
+  }
+  .cab .logo { font-size: 14px; font-weight: 800; letter-spacing: -.03em; color: var(--texto); }
+  .cab .logo b { color: var(--acento); font-weight: 800; }
+  .cab .nav { display: flex; align-items: center; gap: 12px; font-size: 9.5px; font-weight: 500; color: var(--texto-suave); }
+  .cab .cta { background: var(--acento); color: var(--acento-texto); border-radius: 999px; padding: 4px 11px; font-weight: 700; }
+
+  /* Tipografía espejo del sitio */
+  .t-hero   { font-size: 23px; line-height: 1.12; font-weight: 800; letter-spacing: -.032em; color: var(--texto); text-wrap: balance; }
+  .t-h2     { font-size: 17px; line-height: 1.18; font-weight: 800; letter-spacing: -.028em; color: var(--texto); text-wrap: balance; }
+  .t-lead   { font-size: 11.5px; line-height: 1.6; color: var(--texto-suave); }
+  .t-sub    { font-size: 11.5px; line-height: 16px; font-weight: 700; }
+  .t-cuerpo { font-size: 10.5px; line-height: 15px; color: var(--texto-suave); }
+  .t-apoyo  { font-size: 9.5px; line-height: 13px; color: var(--texto-tenue); }
+  .eyebrow  { font-family: var(--mono); font-size: 8.5px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--acento-hondo); }
+  .c-suave { color: var(--texto-suave); }
+  .c-tenue { color: var(--texto-tenue); }
+  .c-acento { color: var(--acento); }
+  .num { font-variant-numeric: tabular-nums; }
+
+  .btn, .btn2 {
+    display: inline-block; text-align: center;
+    border-radius: 999px; padding: 7px 15px;
+    font-size: 10.5px; font-weight: 700; border: 1px solid transparent;
+  }
+  .btn { background: var(--acento); color: var(--acento-texto); }
+  .btn2 { background: transparent; color: var(--texto); border-color: var(--borde-fuerte); }
+  .btn.ancho { display: block; width: 100%; }
+
+  /* Métricas */
+  .metrica-xl { font-size: 30px; font-weight: 800; letter-spacing: -.035em; line-height: 1; color: var(--acento-hondo); }
+  .metrica-lg { font-size: 19px; font-weight: 800; letter-spacing: -.03em; line-height: 1; color: var(--texto); }
+  .metrica-md { font-size: 15px; font-weight: 800; letter-spacing: -.03em; line-height: 1; color: var(--texto); }
+  .metrica-cap { font-size: 8.5px; line-height: 12px; color: var(--texto-tenue); margin-top: 3px; }
+
+  .tarj-metrica {
+    background: var(--superficie); border: 1px solid var(--borde);
+    border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 9px;
+  }
+  .fila-metricas { display: flex; gap: 16px; }
+  .fila-metricas > div { flex: 1; }
+
+  /* Gráfico de barras del hero */
+  .barras { display: flex; align-items: flex-end; gap: 5px; height: 74px; }
+  .barras i { flex: 1; border-radius: 3px 3px 0 0; display: block; }
+
+  /* Casos */
+  .caso {
+    background: var(--superficie); border: 1px solid var(--borde);
+    border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 6px;
+  }
+  .caso .marca-caso { font-size: 12.5px; font-weight: 800; letter-spacing: -.02em; }
+  .caso .cifras { display: flex; gap: 14px; margin-top: 2px; padding-top: 8px; border-top: 1px solid var(--borde); }
+
+  /* Línea de tiempo de fases */
+  .riel { position: relative; padding-left: 20px; display: flex; flex-direction: column; gap: 9px; }
+  .riel::before { content: ""; position: absolute; left: 4.5px; top: 5px; bottom: 5px; width: 1.5px; background: var(--borde-fuerte); }
+  .paso { position: relative; display: flex; flex-direction: column; gap: 1px; }
+  .paso::before {
+    content: ""; position: absolute; left: -20px; top: 4px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--superficie); border: 2px solid var(--borde-fuerte);
+  }
+  .paso.on::before { background: var(--acento); border-color: var(--acento); }
+  .paso .fase { font-family: var(--mono); font-size: 8px; font-weight: 600; letter-spacing: .12em; color: var(--texto-tenue); }
+  .paso.on .fase { color: var(--acento-hondo); }
+
+  /* Diferenciadores */
+  .rejilla { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+  .dif { background: var(--superficie); border: 1px solid var(--borde); border-radius: 11px; padding: 11px; display: flex; flex-direction: column; gap: 4px; }
+  .ico { width: 15px; height: 15px; stroke: var(--acento); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .ico.mini { width: 12px; height: 12px; }
+
+  /* Marquesina de marcas */
+  .marquesina { display: flex; gap: 8px; flex-wrap: wrap; }
+  .logo-marca {
+    font-size: 9px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+    color: var(--texto-tenue); border: 1px solid var(--borde-fuerte);
+    border-radius: 6px; padding: 5px 9px; background: var(--superficie);
+  }
+
+  /* Planes */
+  .plan {
+    background: var(--superficie); border: 1px solid var(--borde);
+    border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 6px;
+  }
+  .plan.destacado { border-color: var(--acento); box-shadow: 0 0 0 2px var(--acento-tenue); }
+  .plan .precio { font-size: 17px; font-weight: 800; letter-spacing: -.03em; }
+  .vineta { display: flex; gap: 6px; align-items: flex-start; }
+
+  .campo { display: flex; flex-direction: column; gap: 3px; }
+  .etiqueta { font-size: 8.5px; font-weight: 700; color: var(--texto-tenue); letter-spacing: .04em; text-transform: uppercase; }
+  .caja { border: 1px solid var(--borde-fuerte); background: var(--superficie); border-radius: 8px; padding: 7px 9px; font-size: 10px; color: var(--texto); }
+  .caja.vacia { color: var(--texto-tenue); }
+  .caja.cursor { border-color: var(--acento); }
+  .caja.alta { min-height: 46px; align-items: flex-start; }
+
+  .divisor { height: 1px; background: var(--borde); }
+  .linea { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+
+  footer {
+    border-top: 1px solid var(--borde-fuerte);
+    padding-top: 24px;
+    color: var(--texto-tenue);
+    font-size: 13px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+  }
+
+  @media (max-width: 640px) {
+    .hoja { padding: 44px 18px 64px; }
+    section { margin-bottom: 60px; }
+    .galeria { grid-template-columns: 1fr; gap: 34px; }
+    .rejilla { grid-template-columns: 1fr; }
+  }
+</style>
+
+<svg style="display:none" aria-hidden="true">
+  <symbol id="i-medir" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+  <symbol id="i-diana" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></symbol>
+  <symbol id="i-fases" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h9"/><circle cx="19" cy="18" r="2.2"/></symbol>
+  <symbol id="i-datos" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3.2"/><path d="M4 6v12c0 1.8 3.6 3.2 8 3.2s8-1.4 8-3.2V6M4 12c0 1.8 3.6 3.2 8 3.2s8-1.4 8-3.2"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12.5 5.5 5.5L20 6.5"/></symbol>
+  <symbol id="i-flecha" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+</svg>
+
+<div class="hoja">
+
+  <header class="portada">
+    <h1 class="marca">victoriaisabel.cl</h1>
+    <p class="lema">Sitio de consultoría en marketing digital. Siete páginas, blog en Markdown, casos servidos desde un archivo de datos y medición con Tag Manager.</p>
+    <div class="meta">
+      <span class="pill">Astro 5</span>
+      <span class="pill">AstroWind</span>
+      <span class="pill">Tailwind</span>
+      <span class="pill">Netlify</span>
+      <span class="pill">GTM-5XJ6TQ59</span>
+      <span class="pill">2026</span>
+    </div>
+  </header>
+
+  <section>
+    <p class="rotulo">Arquitectura</p>
+    <div class="mapa-caja">
+      <svg class="mapa" viewBox="0 0 900 400" role="img" aria-label="Mapa del sitio y su capa de medición">
+        <defs>
+          <marker id="punta" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto">
+            <path d="M0 0.4 L7 3.2 L0 6" fill="none" stroke="var(--borde-fuerte)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+
+        <g font-size="13" fill="var(--texto)">
+          <text x="0" y="18" font-size="10" letter-spacing="1.4" fill="var(--texto-tenue)" font-weight="700">ENTRADA</text>
+          <rect x="0" y="30" width="150" height="46" rx="10" fill="var(--superficie)" stroke="var(--borde-fuerte)"/>
+          <text x="16" y="53" font-weight="700">Inicio</text>
+          <text x="16" y="68" font-size="10.5" fill="var(--texto-tenue)">casos y cifras</text>
+
+          <path d="M150 53 H196" stroke="var(--borde-fuerte)" stroke-width="1.4" fill="none" marker-end="url(#punta)"/>
+
+          <text x="200" y="18" font-size="10" letter-spacing="1.4" fill="var(--texto-tenue)" font-weight="700">QUÉ OFRECE</text>
+          <rect x="200" y="30" width="146" height="38" rx="9" fill="var(--superficie)" stroke="var(--borde)"/>
+          <text x="216" y="54" font-size="11.5" fill="var(--texto-suave)">Soluciones</text>
+          <rect x="200" y="74" width="146" height="38" rx="9" fill="var(--superficie)" stroke="var(--borde)"/>
+          <text x="216" y="98" font-size="11.5" fill="var(--texto-suave)">Nuestro trabajo</text>
+          <rect x="200" y="118" width="146" height="38" rx="9" fill="var(--superficie)" stroke="var(--borde)"/>
+          <text x="216" y="142" font-size="11.5" fill="var(--texto-suave)">Packs</text>
+          <rect x="200" y="162" width="146" height="38" rx="9" fill="var(--superficie)" stroke="var(--borde)"/>
+          <text x="216" y="186" font-size="11.5" fill="var(--texto-suave)">Herramientas</text>
+          <rect x="200" y="206" width="146" height="38" rx="9" fill="var(--superficie)" stroke="var(--borde)"/>
+          <text x="216" y="230" font-size="11.5" fill="var(--texto-suave)">Blog</text>
+
+          <path d="M346 49 H392 V125" stroke="var(--borde-fuerte)" stroke-width="1.2" fill="none"/>
+          <path d="M346 93 H392" stroke="var(--borde-fuerte)" stroke-width="1.2" fill="none"/>
+          <path d="M346 137 H392" stroke="var(--borde-fuerte)" stroke-width="1.2" fill="none"/>
+          <path d="M346 181 H392" stroke="var(--borde-fuerte)" stroke-width="1.2" fill="none"/>
+          <path d="M346 225 H392 V137" stroke="var(--borde-fuerte)" stroke-width="1.2" fill="none"/>
+          <path d="M392 137 H432" stroke="var(--borde-fuerte)" stroke-width="1.4" fill="none" marker-end="url(#punta)"/>
+
+          <text x="436" y="106" font-size="10" letter-spacing="1.4" fill="var(--texto-tenue)" font-weight="700">CONVERSIÓN</text>
+          <rect x="436" y="116" width="150" height="46" rx="10" fill="var(--acento-tenue)" stroke="var(--acento)"/>
+          <text x="452" y="139" font-weight="700">Contacto</text>
+          <text x="452" y="154" font-size="10.5" fill="var(--acento-hondo)">formulario o WhatsApp</text>
+
+          <path d="M586 139 H632" stroke="var(--borde-fuerte)" stroke-width="1.4" fill="none" marker-end="url(#punta)"/>
+          <rect x="636" y="116" width="150" height="46" rx="10" fill="var(--superficie)" stroke="var(--borde-fuerte)"/>
+          <text x="652" y="139" font-weight="700">Gracias</text>
+          <text x="652" y="154" font-size="10.5" fill="var(--texto-tenue)">confirma el envío</text>
+
+          <text x="0" y="290" font-size="10" letter-spacing="1.4" fill="var(--texto-tenue)" font-weight="700">CAPA DE MEDICIÓN</text>
+          <rect x="0" y="300" width="786" height="84" rx="11" fill="var(--superficie)" stroke="var(--borde-fuerte)" stroke-dasharray="4 3"/>
+
+          <rect x="18" y="318" width="150" height="46" rx="9" fill="var(--fondo)" stroke="var(--borde)"/>
+          <text x="34" y="340" font-weight="700" font-size="12">GTM-5XJ6TQ59</text>
+          <text x="34" y="355" font-size="10" fill="var(--texto-tenue)">contenedor único</text>
+
+          <path d="M168 341 H210" stroke="var(--borde-fuerte)" stroke-width="1.4" fill="none" marker-end="url(#punta)"/>
+          <rect x="214" y="318" width="176" height="46" rx="9" fill="var(--fondo)" stroke="var(--borde)"/>
+          <text x="230" y="340" font-weight="700" font-size="12">Forward DataLayer Event</text>
+          <text x="230" y="355" font-size="10" fill="var(--texto-tenue)">regex de eventos + variables dlv_*</text>
+
+          <path d="M390 341 H432" stroke="var(--borde-fuerte)" stroke-width="1.4" fill="none" marker-end="url(#punta)"/>
+          <rect x="436" y="318" width="150" height="46" rx="9" fill="var(--fondo)" stroke="var(--borde)"/>
+          <text x="452" y="340" font-weight="700" font-size="12">GA4</text>
+          <text x="452" y="355" font-size="10" fill="var(--texto-tenue)">un patrón, no una etiqueta por evento</text>
+
+          <path d="M511 300 V186 H511" stroke="var(--acento)" stroke-width="1.2" stroke-dasharray="3 3" fill="none" marker-end="url(#punta)"/>
+          <text x="524" y="240" font-size="10.5" fill="var(--acento-hondo)">cada envío del formulario queda medido</text>
+
+          <text x="0" y="166" font-size="10" letter-spacing="1.4" fill="var(--texto-tenue)" font-weight="700">LEGAL</text>
+          <rect x="0" y="176" width="150" height="30" rx="8" fill="var(--superficie)" stroke="var(--borde)"/>
+          <text x="16" y="195" font-size="10.5" fill="var(--texto-tenue)">Privacidad · Términos</text>
+          <rect x="0" y="212" width="150" height="30" rx="8" fill="var(--superficie)" stroke="var(--borde)"/>
+          <text x="16" y="231" font-size="10.5" fill="var(--texto-tenue)">Eliminar datos</text>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo">Páginas</p>
+
+    <p class="grupo">Portada</p>
+    <div class="galeria">
+
+      <figure>
+        <div class="nave">
+          <div class="barra"><span class="luz"></span><span class="luz"></span><span class="luz"></span><span class="ruta">victoriaisabel.cl</span></div>
+          <div class="vidrio">
+            <div class="cab">
+              <span class="logo">Victoria<b>Isabel</b></span>
+              <span class="nav"><span>Soluciones</span><span>Nuestro trabajo</span><span>Packs</span><span class="cta">Contacto</span></span>
+            </div>
+            <div class="lienzo" style="flex-direction:row;gap:20px;align-items:center">
+              <div style="flex:1.05;display:flex;flex-direction:column;gap:9px">
+                <span class="eyebrow">SEO · SEM · Medición · Ecommerce y B2B</span>
+                <div class="t-hero">Estrategias de marketing digital con <span style="color:var(--acento)">resultados medibles</span>.</div>
+                <div class="t-lead">Convierte tu inversión en marketing digital en ventas y leads medibles. Pauta, SEO y analítica, según lo que tu negocio necesite.</div>
+                <div style="display:flex;gap:7px;margin-top:3px">
+                  <span class="btn">Cuéntame tu proyecto</span>
+                  <span class="btn2">Ver la metodología</span>
+                </div>
+                <div class="t-apoyo" style="margin-top:2px">Si en esa conversación no tengo cómo aportar, te lo digo en la misma llamada.</div>
+              </div>
+              <div style="flex:.95">
+                <div class="tarj-metrica">
+                  <div class="linea">
+                    <div>
+                      <div class="metrica-xl num">ROAS 8</div>
+                      <div class="metrica-cap">Descorcha · Concha y Toro · Chile</div>
+                    </div>
+                  </div>
+                  <div class="barras">
+                    <i style="height:32%;background:#FCE7F3"></i>
+                    <i style="height:44%;background:#FCE7F3"></i>
+                    <i style="height:39%;background:#FBCFE8"></i>
+                    <i style="height:57%;background:#F9A8D4"></i>
+                    <i style="height:66%;background:#F472B6"></i>
+                    <i style="height:78%;background:#EC4899"></i>
+                    <i style="height:92%;background:#DB2777"></i>
+                    <i style="height:100%;background:#BE185D"></i>
+                  </div>
+                  <div class="t-apoyo">Con aporte aproximado del 60% de las ventas del ecommerce desde SEM.</div>
+                  <div class="divisor"></div>
+                  <div class="fila-metricas">
+                    <div><div class="metrica-lg num">USD 1M+</div><div class="metrica-cap">en ventas anuales desde SEM</div></div>
+                    <div><div class="metrica-lg num">+60%</div><div class="metrica-cap">de los leads empresa, canal digital</div></div>
+                    <div><div class="metrica-lg num">30%</div><div class="metrica-cap">de cierre sobre leads brutos</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <figcaption>Inicio<span>La portada abre con las cifras de los casos. El gráfico es ilustrativo y está rotulado como tal.</span></figcaption>
+      </figure>
+
+      <figure>
+        <div class="nave">
+          <div class="barra"><span class="luz"></span><span class="luz"></span><span class="luz"></span><span class="ruta">victoriaisabel.cl/#metodologia</span></div>
+          <div class="vidrio blanca">
+            <div class="lienzo">
+              <span class="eyebrow">Metodología de trabajo</span>
+              <div class="t-hero" style="margin-top:-4px">Una metodología, adaptada a cada negocio</div>
+              <div class="riel" style="margin-top:4px">
+                <div class="paso on">
+                  <span class="fase">Fase 01</span>
+                  <span class="t-sub">Conversación</span>
+                  <span class="t-cuerpo">Reunión inicial sin costo para entender el negocio, los objetivos y el estado de los canales. Si hay match, se avanza al diagnóstico.</span>
+                </div>
+                <div class="paso"><span class="fase">Fase 02</span><span class="t-sub">Diagnóstico</span><span class="t-cuerpo">Revisión de cuentas, medición y competencia antes de proponer nada.</span></div>
+                <div class="paso"><span class="fase">Fase 03</span><span class="t-sub">Implementación</span><span class="t-cuerpo">Se deja la medición configurada y verificada antes de invertir el primer peso.</span></div>
+                <div class="paso"><span class="fase">Fase 04</span><span class="t-sub">Lanzamiento</span><span class="t-cuerpo">Salida de campañas con objetivos y presupuesto acordados.</span></div>
+                <div class="paso"><span class="fase">Fase 05</span><span class="t-sub">Optimización</span><span class="t-cuerpo">Ajuste continuo según lo que muestren los datos: escalar, pausar o corregir.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <figcaption>Metodología<span>Cinco fases numeradas porque son una secuencia real: cada una condiciona la siguiente, y la medición va antes del gasto.</span></figcaption>
+      </figure>
+
+    </div>
+
+    <p class="grupo">Prueba y oferta</p>
+    <div class="galeria">
+
+      <figure>
+        <div class="nave">
+          <div class="barra"><span class="luz"></span><span class="luz"></span><span class="luz"></span><span class="ruta">victoriaisabel.cl/nuestro-trabajo</span></div>
+          <div class="vidrio">
+            <div class="cab">
+              <span class="logo">Victoria<b>Isabel</b></span>
+              <span class="nav"><span>Soluciones</span><span>Nuestro trabajo</span><span>Packs</span><span class="cta">Contacto</span></span>
+            </div>
+            <div class="lienzo">
+              <div class="t-hero">Algunos proyectos donde el trabajo se ve reflejado en los números.</div>
+              <div style="display:flex;flex-direction:column;gap:8px;margin-top:2px">
+                <div class="caso">
+                  <span class="eyebrow" style="color:var(--texto-tenue)">Ecommerce · Chile y Brasil</span>
+                  <span class="marca-caso">Descorcha · Concha y Toro</span>
+                  <span class="t-cuerpo">Impulsar el canal SEM como fuente principal de ventas del ecommerce, en Chile y Brasil.</span>
+                  <div class="cifras">
+                    <div><div class="metrica-md num">USD 1M+</div><div class="metrica-cap">ventas SEM anuales</div></div>
+                    <div><div class="metrica-md num">+50%</div><div class="metrica-cap">aporte SEM al ecommerce</div></div>
+                    <div><div class="metrica-md num">ROAS 8</div><div class="metrica-cap">Chile</div></div>
+                  </div>
+                </div>
+                <div class="caso">
+                  <span class="eyebrow" style="color:var(--texto-tenue)">B2B · Ticket alto</span>
+                  <span class="marca-caso">Netline Chile</span>
+                  <span class="t-cuerpo">Estrategia digital integrada (SEO, SEM, mailing y Salesforce) enfocada en generación de leads B2B calificados.</span>
+                  <div class="cifras">
+                    <div><div class="metrica-md num">30%</div><div class="metrica-cap">de las ventas</div></div>
+                    <div><div class="metrica-md num">60%</div><div class="metrica-cap">leads empresa</div></div>
+                  </div>
+                </div>
+                <div class="caso">
+                  <span class="eyebrow" style="color:var(--texto-tenue)">Ecommerce y automotriz</span>
+                  <span class="marca-caso">Fango Marketing</span>
+                  <span class="t-cuerpo">Campañas para múltiples marcas y clientes, alineadas a resultados de venta.</span>
+                  <div class="cifras">
+                    <div><div class="metrica-md num">30%</div><div class="metrica-cap">cierre sobre leads</div></div>
+                    <div><div class="metrica-md num">ROAS 10+</div><div class="metrica-cap">ecommerce</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <figcaption>Nuestro trabajo<span>Cada caso lleva el objetivo primero y las cifras después, con su unidad.</span></figcaption>
+      </figure>
+
+      <figure>
+        <div class="nave">
+          <div class="barra"><span class="luz"></span><span class="luz"></span><span class="luz"></span><span class="ruta">victoriaisabel.cl/#por-que</span></div>
+          <div class="vidrio blanca">
+            <div class="lienzo">
+              <span class="eyebrow">Por qué trabajar conmigo</span>
+              <div class="t-hero" style="margin-top:-4px">Cuatro cosas que hacen la diferencia</div>
+              <div class="rejilla" style="margin-top:4px">
+                <div class="dif"><svg class="ico"><use href="#i-medir"/></svg><span class="t-sub">Medición desde el día uno</span><span class="t-cuerpo">Toda campaña se lanza con la medición configurada y verificada.</span></div>
+                <div class="dif"><svg class="ico"><use href="#i-diana"/></svg><span class="t-sub">Foco en ventas y leads</span><span class="t-cuerpo">Cada campaña se piensa desde el resultado de negocio.</span></div>
+                <div class="dif"><svg class="ico"><use href="#i-fases"/></svg><span class="t-sub">Metodología con fases definidas</span><span class="t-cuerpo">El mismo proceso ordenado se aplica en todos los proyectos.</span></div>
+                <div class="dif"><svg class="ico"><use href="#i-datos"/></svg><span class="t-sub">Decisiones basadas en datos</span><span class="t-cuerpo">La analítica es la base para escalar, pausar o ajustar cada campaña.</span></div>
+              </div>
+              <div class="divisor" style="margin-top:4px"></div>
+              <span class="eyebrow" style="color:var(--texto-tenue)">Marcas y cuentas con las que he trabajado</span>
+              <div class="marquesina">
+                <span class="logo-marca">Concha y Toro</span>
+                <span class="logo-marca">Descorcha</span>
+                <span class="logo-marca">Netline</span>
+                <span class="logo-marca">Fango</span>
+                <span class="logo-marca">Copeval</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <figcaption>Diferenciadores<span>Cuatro tarjetas sin numerar: no son una secuencia, son criterios simultáneos. La marquesina de marcas cierra la sección.</span></figcaption>
+      </figure>
+
+      <figure>
+        <div class="nave">
+          <div class="barra"><span class="luz"></span><span class="luz"></span><span class="luz"></span><span class="ruta">victoriaisabel.cl/packs</span></div>
+          <div class="vidrio">
+            <div class="cab">
+              <span class="logo">Victoria<b>Isabel</b></span>
+              <span class="nav"><span>Soluciones</span><span>Nuestro trabajo</span><span>Packs</span><span class="cta">Contacto</span></span>
+            </div>
+            <div class="lienzo">
+              <span class="eyebrow">Áreas de trabajo</span>
+              <div class="t-hero" style="margin-top:-4px">Cada plan tiene un foco y una fase de trabajo</div>
+              <div style="display:flex;gap:9px;margin-top:4px">
+                <div class="plan" style="flex:1">
+                  <span class="eyebrow" style="color:var(--texto-tenue)">Diagnóstico</span>
+                  <span class="t-sub">Punto de partida</span>
+                  <div class="vineta"><svg class="ico mini" style="margin-top:1px"><use href="#i-check"/></svg><span class="t-cuerpo">Auditoría de cuentas y medición</span></div>
+                  <div class="vineta"><svg class="ico mini" style="margin-top:1px"><use href="#i-check"/></svg><span class="t-cuerpo">Revisión de competencia</span></div>
+                  <div class="vineta"><svg class="ico mini" style="margin-top:1px"><use href="#i-check"/></svg><span class="t-cuerpo">Plan priorizado</span></div>
+                </div>
+                <div class="plan destacado" style="flex:1">
+                  <span class="eyebrow">Gestión mensual</span>
+                  <span class="t-sub">Pauta y optimización</span>
+                  <div class="vineta"><svg class="ico mini" style="margin-top:1px"><use href="#i-check"/></svg><span class="t-cuerpo">Google Ads y Meta Ads</span></div>
+                  <div class="vineta"><svg class="ico mini" style="margin-top:1px"><use href="#i-check"/></svg><span class="t-cuerpo">Medición GA4 y GTM</span></div>
+                  <div class="vineta"><svg class="ico mini" style="margin-top:1px"><use href="#i-check"/></svg><span class="t-cuerpo">Reporte mensual con lectura</span></div>
+                </div>
+                <div class="plan" style="flex:1">
+                  <span class="eyebrow" style="color:var(--texto-tenue)">Proyecto</span>
+                  <span class="t-sub">Trabajo puntual</span>
+                  <div class="vineta"><svg class="ico mini" style="margin-top:1px"><use href="#i-check"/></svg><span class="t-cuerpo">Implementación de medición</span></div>
+                  <div class="vineta"><svg class="ico mini" style="margin-top:1px"><use href="#i-check"/></svg><span class="t-cuerpo">Dashboard en Data Studio</span></div>
+                  <div class="vineta"><svg class="ico mini" style="margin-top:1px"><use href="#i-check"/></svg><span class="t-cuerpo">Capacitación al equipo</span></div>
+                </div>
+              </div>
+              <div class="t-apoyo" style="margin-top:2px">¿Buscas algo más específico? Cuéntame tu proyecto.</div>
+            </div>
+          </div>
+        </div>
+        <figcaption>Packs<span>Tres planes ordenados por profundidad de compromiso, no por precio. El del medio queda marcado como el recorrido habitual.</span></figcaption>
+      </figure>
+
+      <figure>
+        <div class="nave">
+          <div class="barra"><span class="luz"></span><span class="luz"></span><span class="luz"></span><span class="ruta">victoriaisabel.cl/contacto</span></div>
+          <div class="vidrio">
+            <div class="cab">
+              <span class="logo">Victoria<b>Isabel</b></span>
+              <span class="nav"><span>Soluciones</span><span>Nuestro trabajo</span><span>Packs</span><span class="cta">Contacto</span></span>
+            </div>
+            <div class="lienzo" style="flex-direction:row;gap:20px;align-items:flex-start;padding-top:22px">
+              <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+                <div class="t-hero">Cuéntame tu proyecto</div>
+                <div class="t-lead">Una conversación inicial sin costo para entender tu negocio y ver si tengo cómo aportar.</div>
+                <div class="divisor" style="margin:2px 0"></div>
+                <div class="vineta"><svg class="ico mini" style="margin-top:1px"><use href="#i-check"/></svg><span class="t-cuerpo">Sin compromiso ni propuesta genérica</span></div>
+                <div class="vineta"><svg class="ico mini" style="margin-top:1px"><use href="#i-check"/></svg><span class="t-cuerpo">Respuesta dentro del día hábil</span></div>
+                <div class="vineta"><svg class="ico mini" style="margin-top:1px"><use href="#i-check"/></svg><span class="t-cuerpo">Si no puedo ayudarte, te lo digo de inmediato</span></div>
+              </div>
+              <div style="flex:1;background:var(--superficie);border:1px solid var(--borde);border-radius:12px;padding:13px;display:flex;flex-direction:column;gap:8px">
+                <div class="campo"><span class="etiqueta">Nombre</span><div class="caja cursor">Victoria<span style="color:var(--acento)">|</span></div></div>
+                <div class="campo"><span class="etiqueta">Correo</span><div class="caja vacia">tu@empresa.cl</div></div>
+                <div class="campo"><span class="etiqueta">Qué necesitas</span><div class="caja vacia linea"><span>Selecciona…</span><span>▾</span></div></div>
+                <div class="campo"><span class="etiqueta">Mensaje</span><div class="caja vacia alta">Contexto del proyecto</div></div>
+                <span class="btn ancho" style="margin-top:2px">Enviar</span>
+                <span class="t-apoyo" style="text-align:center">El envío dispara el evento medido en GA4 vía GTM.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <figcaption>Contacto<span>La página que cierra el embudo, y la que el patrón de medición del sitio observa: cada envío queda registrado como evento.</span></figcaption>
+      </figure>
+
+    </div>
+  </section>
+
+  <footer>
+    <span>victoriaisabel.cl · 2026</span>
+    <span>Astro 5 · AstroWind · Tailwind · Netlify</span>
+    <span>Maquetas dibujadas con la paleta y la tipografía del sitio</span>
+  </footer>
+
+</div>
+</body>
+</html>

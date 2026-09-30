@@ -1,0 +1,946 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Almácigo &#183; Victoria Isabel</title>
+<meta name="description" content="Hoja de diseño de Almácigo: flujo y pantallas del proyecto.">
+
+<style>
+  :root{color-scheme:light dark}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+</style>
+</head>
+<body>
+<a class="volver" href="../index.html">&#8592; Portafolio</a>
+<style>
+  .volver{position:fixed;top:14px;left:14px;z-index:99;font:600 12.5px/1 ui-sans-serif,system-ui,-apple-system,sans-serif;
+    text-decoration:none;padding:8px 14px;border-radius:999px;backdrop-filter:blur(10px);
+    background:color-mix(in srgb,Canvas 78%,transparent);color:CanvasText;
+    border:1px solid color-mix(in srgb,CanvasText 16%,transparent);transition:transform .25s,border-color .25s}
+  .volver:hover{transform:translateY(-1px);border-color:color-mix(in srgb,CanvasText 34%,transparent)}
+  .volver:focus-visible{outline:2px solid #EC4899;outline-offset:3px}
+  @media print{.volver{display:none}}
+</style>
+<style>
+  /* Paleta tomada de src/constants/theme.ts */
+  :root {
+    --fondo: #FBFAF7;
+    --superficie: #FFFFFF;
+    --superficie-alt: #F2F0EA;
+    --texto: #1F1D18;
+    --texto-suave: #6B665C;
+    --texto-tenue: #97918A;
+    --borde: #E3DFD5;
+    --borde-fuerte: #CFC9BB;
+    --acento: #4A6B4F;
+    --acento-texto: #FFFFFF;
+    --acento-suave: #E6EDE4;
+    --atencion: #A85D27;
+    --marco: #2A2822;
+    --sombra: 0 1px 2px rgba(31,29,24,.05), 0 8px 28px rgba(31,29,24,.07);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --fondo: #14140F; --superficie: #1D1C17; --superficie-alt: #26251F;
+      --texto: #EDEAE1; --texto-suave: #A8A296; --texto-tenue: #7C776D;
+      --borde: #33322A; --borde-fuerte: #474539;
+      --acento: #8FB795; --acento-texto: #14140F; --acento-suave: #232C22;
+      --atencion: #D9924F; --marco: #000000;
+      --sombra: 0 1px 2px rgba(0,0,0,.4), 0 8px 28px rgba(0,0,0,.45);
+    }
+  }
+  :root[data-theme="dark"] {
+    --fondo: #14140F; --superficie: #1D1C17; --superficie-alt: #26251F;
+    --texto: #EDEAE1; --texto-suave: #A8A296; --texto-tenue: #7C776D;
+    --borde: #33322A; --borde-fuerte: #474539;
+    --acento: #8FB795; --acento-texto: #14140F; --acento-suave: #232C22;
+    --atencion: #D9924F; --marco: #000000;
+    --sombra: 0 1px 2px rgba(0,0,0,.4), 0 8px 28px rgba(0,0,0,.45);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--fondo);
+    color: var(--texto);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hoja { max-width: 1180px; margin: 0 auto; padding: 64px 28px 88px; }
+
+  /* ── Portada ─────────────────────────────────────────────────────────── */
+  .portada { margin-bottom: 72px; }
+  .marca {
+    font-size: clamp(44px, 9vw, 76px);
+    line-height: 1;
+    font-weight: 600;
+    letter-spacing: -.03em;
+    margin: 0 0 14px;
+  }
+  .lema {
+    font-size: clamp(17px, 2.2vw, 20px);
+    color: var(--texto-suave);
+    margin: 0 0 26px;
+    max-width: 44ch;
+    text-wrap: balance;
+  }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12px;
+    padding: 5px 11px;
+    border: 1px solid var(--borde);
+    border-radius: 999px;
+    color: var(--texto-suave);
+    background: var(--superficie);
+    white-space: nowrap;
+  }
+
+  section { margin-bottom: 76px; }
+
+  .rotulo {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11.5px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--texto-tenue);
+    margin: 0 0 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .rotulo::after { content: ""; flex: 1; height: 1px; background: var(--borde); }
+
+  .grupo { font-size: 13px; font-weight: 600; color: var(--texto-tenue); letter-spacing: .04em; text-transform: uppercase; margin: 0 0 18px; }
+
+  /* ── Mapa ────────────────────────────────────────────────────────────── */
+  .mapa-caja { overflow-x: auto; padding-bottom: 8px; }
+  .mapa { min-width: 880px; width: 100%; height: auto; display: block; }
+  .mapa text { font-family: ui-sans-serif, system-ui, sans-serif; }
+
+  /* ── Galería ─────────────────────────────────────────────────────────── */
+  .galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+    gap: 40px 28px;
+    margin-bottom: 56px;
+  }
+  .galeria:last-child { margin-bottom: 0; }
+  figure { margin: 0; display: flex; flex-direction: column; align-items: center; }
+  figcaption {
+    margin-top: 14px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--texto);
+    text-align: center;
+  }
+  figcaption span {
+    display: block;
+    font-weight: 400;
+    font-size: 12px;
+    color: var(--texto-tenue);
+    margin-top: 2px;
+  }
+
+  /* ── El teléfono ─────────────────────────────────────────────────────── */
+  .fono {
+    width: 268px;
+    height: 552px;
+    background: var(--marco);
+    border-radius: 34px;
+    padding: 8px;
+    box-shadow: var(--sombra);
+  }
+  .vidrio {
+    height: 100%;
+    background: var(--fondo);
+    border-radius: 27px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .estado {
+    height: 26px; flex: 0 0 26px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 16px;
+    font-size: 10px; font-weight: 600; color: var(--texto); opacity: .55;
+  }
+  .lienzo { flex: 1; overflow: hidden; padding: 6px 16px 16px; display: flex; flex-direction: column; gap: 12px; }
+  .lienzo.pegado > .abajo { margin-top: auto; }
+
+  /* Tipografía espejo de src/constants/theme.ts */
+  .t-display  { font-size: 26px; line-height: 30px; font-weight: 600; letter-spacing: -.01em; }
+  .t-titulo   { font-size: 20px; line-height: 25px; font-weight: 600; letter-spacing: -.01em; }
+  .t-sub      { font-size: 15px; line-height: 20px; font-weight: 600; }
+  .t-cuerpo   { font-size: 13px; line-height: 19px; }
+  .t-fuerte   { font-size: 13px; line-height: 19px; font-weight: 600; }
+  .t-apoyo    { font-size: 11.5px; line-height: 16px; }
+  .t-etiqueta { font-size: 9.5px; line-height: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+  .c-suave { color: var(--texto-suave); }
+  .c-tenue { color: var(--texto-tenue); }
+  .c-acento { color: var(--acento); }
+  .c-atencion { color: var(--atencion); }
+  .centrado { text-align: center; }
+
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 22px; flex: 0 0 22px; }
+  .nav span { display: inline-flex; align-items: center; gap: 4px; font-size: 11.5px; color: var(--acento); font-weight: 500; }
+
+  .tarj { background: var(--superficie); border: 1px solid var(--borde); border-radius: 13px; padding: 12px; }
+  .tarj.marcada { background: var(--acento-suave); border-color: var(--acento); }
+
+  .fila {
+    display: flex; align-items: center; gap: 11px;
+    background: var(--superficie); border: 1px solid var(--borde);
+    border-radius: 13px; padding: 11px 12px;
+  }
+  .fila .txt { flex: 1; min-width: 0; }
+  .fila.apagada { opacity: .55; }
+
+  .ico { flex: 0 0 auto; width: 17px; height: 17px; stroke: var(--acento); fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  .ico.gris { stroke: var(--texto-tenue); }
+  .ico.mini { width: 13px; height: 13px; }
+  .chev { width: 12px; height: 12px; stroke: var(--texto-tenue); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: 0 0 auto; }
+
+  .btn, .btn2, .btn3 {
+    display: block; width: 100%; text-align: center;
+    border-radius: 11px; padding: 10px 12px;
+    font-size: 13px; font-weight: 600; border: 1px solid transparent;
+  }
+  .btn { background: var(--acento); color: var(--acento-texto); }
+  .btn2 { background: transparent; color: var(--acento); border-color: var(--borde-fuerte); }
+  .btn3 { background: transparent; color: var(--acento); padding: 7px 12px; }
+  .btn3.izq { text-align: left; padding-left: 0; }
+
+  .franja { background: var(--acento-suave); border-radius: 13px; padding: 22px 14px; text-align: center; display: flex; flex-direction: column; gap: 3px; }
+
+  .mosaico { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .celda { background: var(--superficie); border: 1px solid var(--borde); border-radius: 13px; padding: 12px; display: flex; flex-direction: column; gap: 5px; min-height: 82px; }
+  .celda.apagada { opacity: .55; }
+
+  .opciones { display: flex; gap: 7px; }
+  .opciones.col { flex-direction: column; }
+  .op {
+    flex: 1; text-align: center;
+    border: 1px solid var(--borde-fuerte); border-radius: 10px;
+    padding: 8px 6px; font-size: 12.5px; color: var(--texto-suave); background: var(--superficie);
+  }
+  .opciones.col .op { text-align: left; padding-left: 12px; }
+  .op.sel { background: var(--acento-suave); border-color: var(--acento); color: var(--acento); font-weight: 600; }
+
+  .campo { display: flex; flex-direction: column; gap: 5px; }
+  .caja { border: 1px solid var(--borde-fuerte); background: var(--superficie); border-radius: 10px; padding: 9px 11px; font-size: 13px; color: var(--texto); }
+  .caja.cursor { border-color: var(--acento); }
+
+  .linea { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .divisor { height: 1px; background: var(--borde); margin: 3px 0; }
+
+  .item { display: flex; align-items: center; gap: 9px; padding: 7px 0; border-bottom: 1px solid var(--borde); }
+  .item:last-child { border-bottom: 0; }
+  .marca-check { flex: 0 0 auto; width: 15px; height: 15px; border-radius: 4px; border: 1.5px solid var(--borde-fuerte); display: grid; place-items: center; }
+  .marca-check.si { background: var(--acento); border-color: var(--acento); }
+  .marca-check svg { width: 9px; height: 9px; stroke: var(--acento-texto); fill: none; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+  .item .txt { flex: 1; min-width: 0; }
+
+  .tabbar { flex: 0 0 44px; border-top: 1px solid var(--borde); background: var(--superficie); display: flex; }
+  .tab { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 9px; font-weight: 600; color: var(--texto-tenue); }
+  .tab.on { color: var(--acento); }
+  .tab .ico { stroke: currentColor; width: 16px; height: 16px; }
+
+  .scrollcue { height: 3px; border-radius: 2px; background: var(--borde); width: 32px; margin: 2px auto 0; }
+
+  footer {
+    border-top: 1px solid var(--borde);
+    padding-top: 24px;
+    color: var(--texto-tenue);
+    font-size: 13px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+  }
+
+  @media (max-width: 640px) {
+    .hoja { padding: 44px 18px 64px; }
+    section { margin-bottom: 60px; }
+    .galeria { gap: 34px 20px; }
+  }
+</style>
+
+<svg style="display:none" aria-hidden="true">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></symbol>
+  <symbol id="i-med" viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="13" rx="2"/><path d="M9 7V4h6v3M12 11.5v5M9.5 14h5"/></symbol>
+  <symbol id="i-gente" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20c0-3.3 2.9-5.5 6.5-5.5s6.5 2.2 6.5 5.5"/><path d="M17 5.6a3 3 0 0 1 0 5.8M18.5 20c0-2.3-.7-3.9-1.8-5"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-img" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.6"/><path d="m4 17 5-4.5 4 3.5 3-2.5 4 3.5"/></symbol>
+  <symbol id="i-cog" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 14.5a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.2a1.6 1.6 0 0 0-2.8-1L7.3 20a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3.5 14H3a2 2 0 1 1 0-4h.2a1.6 1.6 0 0 0 1-2.8L4 7.1a2 2 0 0 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 2.7-1.1V3a2 2 0 1 1 4 0v.2a1.6 1.6 0 0 0 2.8 1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7H21a2 2 0 1 1 0 4h-.2a1.6 1.6 0 0 0-1.4 1z"/></symbol>
+  <symbol id="i-alerta" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="M12 7.5v5.2M12 16.3h.01"/></symbol>
+  <symbol id="i-persona" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20.5c0-3.8 3.4-6.3 7.5-6.3s7.5 2.5 7.5 6.3"/></symbol>
+  <symbol id="i-idioma" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="M3 12h18M12 2.8c2.4 2.6 3.6 5.7 3.6 9.2s-1.2 6.6-3.6 9.2c-2.4-2.6-3.6-5.7-3.6-9.2S9.6 5.4 12 2.8z"/></symbol>
+  <symbol id="i-tema" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="M12 2.8v18.4a9.2 9.2 0 0 0 0-18.4z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-salir" viewBox="0 0 24 24"><path d="M15 4.5H19a1.5 1.5 0 0 1 1.5 1.5v12a1.5 1.5 0 0 1-1.5 1.5h-4M10 16l-4-4 4-4M6 12h10"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+  <symbol id="i-atras" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12.5 5.5 5.5L20 6.5"/></symbol>
+</svg>
+
+<div class="hoja">
+
+  <header class="portada">
+    <h1 class="marca">Almácigo</h1>
+    <p class="lema">App de crianza compartida para familias separadas por la migración.</p>
+    <div class="meta">
+      <span class="pill">React Native</span>
+      <span class="pill">Expo</span>
+      <span class="pill">TypeScript</span>
+      <span class="pill">Android · iOS</span>
+      <span class="pill">2026</span>
+    </div>
+  </header>
+
+  <section>
+    <p class="rotulo">Flujo</p>
+    <div class="mapa-caja">
+      <svg class="mapa" viewBox="0 0 900 430" role="img" aria-label="Diagrama de navegación de la app">
+        <defs>
+          <marker id="punta" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto">
+            <path d="M0 0.4 L7 3.2 L0 6" fill="none" stroke="var(--borde-fuerte)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+
+        <g font-size="13" fill="var(--texto)">
+          <text x="0" y="18" font-size="10" letter-spacing="1.4" fill="var(--texto-tenue)" font-weight="600">ENTRADA</text>
+          <rect x="0" y="30" width="146" height="46" rx="10" fill="var(--superficie)" stroke="var(--borde)"/>
+          <text x="16" y="59" font-weight="600">Bienvenida</text>
+
+          <path d="M146 53 H192" stroke="var(--borde-fuerte)" stroke-width="1.4" fill="none" marker-end="url(#punta)"/>
+
+          <rect x="196" y="30" width="146" height="46" rx="10" fill="var(--superficie)" stroke="var(--borde)"/>
+          <text x="212" y="53" font-weight="600">Caminos</text>
+          <text x="212" y="68" font-size="10.5" fill="var(--texto-tenue)">¿tuyo o de alguien?</text>
+
+          <path d="M342 46 H368 V112" stroke="var(--borde-fuerte)" stroke-width="1.4" fill="none" marker-end="url(#punta)"/>
+          <path d="M342 62 H368 V262" stroke="var(--borde-fuerte)" stroke-width="1.4" fill="none" marker-end="url(#punta)"/>
+
+          <text x="392" y="106" font-size="10" letter-spacing="1.4" fill="var(--texto-tenue)" font-weight="600">ES MI HIJO</text>
+          <rect x="392" y="116" width="122" height="42" rx="10" fill="var(--acento-suave)" stroke="var(--acento)"/>
+          <text x="406" y="134" font-weight="600" font-size="12.5">1 · Fecha</text>
+          <text x="406" y="149" font-size="10.5" fill="var(--texto-suave)">¿ya nació?</text>
+
+          <path d="M514 137 H548" stroke="var(--borde-fuerte)" stroke-width="1.4" fill="none" marker-end="url(#punta)"/>
+          <rect x="552" y="116" width="122" height="42" rx="10" fill="var(--acento-suave)" stroke="var(--acento)"/>
+          <text x="566" y="134" font-weight="600" font-size="12.5">2 · Quiénes</text>
+          <text x="566" y="149" font-size="10.5" fill="var(--texto-suave)">nombre y vínculo</text>
+
+          <path d="M674 137 H708" stroke="var(--borde-fuerte)" stroke-width="1.4" fill="none" marker-end="url(#punta)"/>
+          <rect x="712" y="116" width="122" height="42" rx="10" fill="var(--acento-suave)" stroke="var(--acento)"/>
+          <text x="726" y="134" font-weight="600" font-size="12.5">3 · Listo</text>
+          <text x="726" y="149" font-size="10.5" fill="var(--texto-suave)">aquí se crea</text>
+
+          <text x="392" y="256" font-size="10" letter-spacing="1.4" fill="var(--texto-tenue)" font-weight="600">SE LO PREPARO A ALGUIEN</text>
+          <rect x="392" y="266" width="122" height="42" rx="10" fill="var(--superficie)" stroke="var(--borde)"/>
+          <text x="406" y="292" font-weight="600" font-size="12.5">1 · Fecha</text>
+
+          <path d="M514 287 H548" stroke="var(--borde-fuerte)" stroke-width="1.4" fill="none" marker-end="url(#punta)"/>
+          <rect x="552" y="266" width="122" height="42" rx="10" fill="var(--superficie)" stroke="var(--borde)"/>
+          <text x="566" y="284" font-weight="600" font-size="12.5">2 · Relación</text>
+          <text x="566" y="299" font-size="10.5" fill="var(--texto-suave)">¿de quién es?</text>
+
+          <path d="M674 287 H708" stroke="var(--borde-fuerte)" stroke-width="1.4" fill="none" marker-end="url(#punta)"/>
+          <rect x="712" y="266" width="122" height="42" rx="10" fill="var(--superficie)" stroke="var(--borde)"/>
+          <text x="726" y="284" font-weight="600" font-size="12.5">3 · Personas</text>
+          <text x="726" y="299" font-size="10.5" fill="var(--texto-suave)">los papás</text>
+
+          <path d="M773 308 V346" stroke="var(--borde-fuerte)" stroke-width="1.4" fill="none" marker-end="url(#punta)"/>
+          <rect x="672" y="350" width="202" height="42" rx="10" fill="var(--superficie)" stroke="var(--borde)"/>
+          <text x="688" y="368" font-weight="600" font-size="12.5">4 · Invitar a los papás</text>
+          <text x="688" y="383" font-size="10.5" fill="var(--texto-suave)">WhatsApp o link</text>
+
+          <path d="M773 158 V190" stroke="var(--borde-fuerte)" stroke-width="1.4" fill="none" marker-end="url(#punta)"/>
+          <rect x="648" y="194" width="200" height="44" rx="10" fill="var(--superficie)" stroke="var(--borde-fuerte)" stroke-width="1.5"/>
+          <text x="664" y="214" font-weight="600" font-size="12.5">Tablero del hijo</text>
+          <text x="664" y="229" font-size="10.5" fill="var(--texto-suave)">listas · ficha · agenda · recuerdos</text>
+
+          <text x="0" y="166" font-size="10" letter-spacing="1.4" fill="var(--texto-tenue)" font-weight="600">LA CASA</text>
+          <rect x="0" y="176" width="146" height="46" rx="10" fill="var(--superficie)" stroke="var(--borde)"/>
+          <text x="16" y="205" font-weight="600">Inicio</text>
+          <path d="M73 222 V238" stroke="var(--borde)" stroke-width="1.4" fill="none"/>
+
+          <g font-size="11.5" fill="var(--texto-suave)">
+            <rect x="0" y="242" width="146" height="30" rx="8" fill="var(--superficie)" stroke="var(--borde)"/>
+            <text x="16" y="261">Mis hijos</text>
+            <rect x="0" y="278" width="146" height="30" rx="8" fill="var(--superficie)" stroke="var(--borde)"/>
+            <text x="16" y="297">Listas</text>
+            <rect x="0" y="314" width="146" height="30" rx="8" fill="var(--superficie)" stroke="var(--borde)"/>
+            <text x="16" y="333">Fichas</text>
+            <rect x="0" y="350" width="146" height="30" rx="8" fill="var(--superficie)" stroke="var(--borde)"/>
+            <text x="16" y="369">Cambios importantes</text>
+          </g>
+
+          <path d="M146 257 H192" stroke="var(--borde-fuerte)" stroke-width="1.2" stroke-dasharray="3 3" fill="none" marker-end="url(#punta)"/>
+          <text x="198" y="261" font-size="10.5" fill="var(--texto-tenue)">vuelta siempre visible</text>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo">Pantallas</p>
+
+    <p class="grupo">Entrada y registro</p>
+    <div class="galeria">
+
+      <figure>
+        <div class="fono"><div class="vidrio">
+          <div class="estado"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="lienzo pegado">
+            <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px">
+              <div class="t-display centrado">Almácigo</div>
+              <div class="t-cuerpo c-suave centrado">Un registro de los primeros años, para una familia que no siempre está cerca.</div>
+            </div>
+            <div class="abajo" style="display:flex;flex-direction:column;gap:8px;padding-bottom:12px">
+              <div class="btn">Entrar con Google</div>
+              <div class="btn3">Tengo un código de invitación</div>
+            </div>
+          </div>
+        </div></div>
+        <figcaption>Bienvenida</figcaption>
+      </figure>
+
+      <figure>
+        <div class="fono"><div class="vidrio">
+          <div class="estado"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="lienzo">
+            <div class="nav"><span><svg class="ico mini"><use href="#i-atras"/></svg>Volver</span></div>
+            <div class="t-titulo">Hola, Victoria</div>
+            <div class="tarj">
+              <div class="t-fuerte">Crear un registro</div>
+              <div class="t-apoyo c-suave">Estoy esperando, o ya nació</div>
+            </div>
+            <div class="tarj">
+              <div class="t-fuerte">Preparárselo a alguien</div>
+              <div class="t-apoyo c-suave">Un hermano, una hija, una amiga</div>
+            </div>
+            <div class="tarj">
+              <div class="t-fuerte">Ver cómo funciona</div>
+              <div class="t-apoyo c-suave">Con datos de ejemplo</div>
+            </div>
+          </div>
+        </div></div>
+        <figcaption>Caminos</figcaption>
+      </figure>
+
+      <figure>
+        <div class="fono"><div class="vidrio">
+          <div class="estado"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="lienzo pegado">
+            <div class="nav"><span><svg class="ico mini"><use href="#i-atras"/></svg>Volver</span></div>
+            <div class="t-titulo">Crear un registro</div>
+            <div class="t-fuerte">¿Ya nació?</div>
+            <div class="opciones">
+              <div class="op">Todavía no</div>
+              <div class="op sel">Sí</div>
+            </div>
+            <div class="campo">
+              <div class="t-apoyo c-suave">Fecha de nacimiento</div>
+              <div class="caja cursor">14 / 03 / 2019</div>
+            </div>
+            <div class="t-apoyo c-acento">Nació más de uno</div>
+            <div class="abajo"><div class="btn">Seguir</div></div>
+          </div>
+        </div></div>
+        <figcaption>Fecha <span>paso 1 de 3</span></figcaption>
+      </figure>
+
+      <figure>
+        <div class="fono"><div class="vidrio">
+          <div class="estado"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="lienzo pegado">
+            <div class="nav"><span><svg class="ico mini"><use href="#i-atras"/></svg>Volver</span></div>
+            <div class="t-titulo">Crear un registro</div>
+            <div class="campo">
+              <div class="t-apoyo c-suave">¿Cómo se llama?</div>
+              <div class="caja">Isabella</div>
+            </div>
+            <div class="t-fuerte" style="margin-top:4px">¿Quién eres para ella?</div>
+            <div class="opciones col">
+              <div class="op sel">Madre</div>
+              <div class="op">Padre</div>
+              <div class="op">Tutor o tutora</div>
+            </div>
+            <div class="abajo"><div class="btn">Seguir</div></div>
+          </div>
+        </div></div>
+        <figcaption>Quiénes <span>paso 2 de 3</span></figcaption>
+      </figure>
+
+      <figure>
+        <div class="fono"><div class="vidrio">
+          <div class="estado"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="lienzo pegado">
+            <div class="nav"><span><svg class="ico mini"><use href="#i-atras"/></svg>Volver</span></div>
+            <div class="franja" style="padding:34px 14px">
+              <div class="t-sub">Isabella</div>
+              <div class="t-display c-acento">7 años</div>
+            </div>
+            <div class="abajo" style="display:flex;flex-direction:column;gap:8px">
+              <div class="btn">Crear sus listas</div>
+              <div class="btn2">Agregar otro hijo</div>
+              <div class="btn3">Terminar</div>
+            </div>
+          </div>
+        </div></div>
+        <figcaption>Listo <span>paso 3 de 3</span></figcaption>
+      </figure>
+
+      <figure>
+        <div class="fono"><div class="vidrio">
+          <div class="estado"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="lienzo pegado">
+            <div class="nav"><span><svg class="ico mini"><use href="#i-atras"/></svg>Volver</span></div>
+            <div class="t-titulo">Invita a los papás</div>
+            <div class="t-cuerpo c-suave">Hasta que alguno entre, puedes armar la lista y el presupuesto, pero no subir fotos ni invitar a nadie más.</div>
+            <div class="abajo" style="display:flex;flex-direction:column;gap:8px">
+              <div class="btn">Enviar por WhatsApp</div>
+              <div class="btn2">Copiar link</div>
+              <div class="btn3">Lo hago después</div>
+            </div>
+          </div>
+        </div></div>
+        <figcaption>Invitar</figcaption>
+      </figure>
+
+    </div>
+
+    <p class="grupo">Navegación</p>
+    <div class="galeria">
+
+      <figure>
+        <div class="fono"><div class="vidrio">
+          <div class="estado"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="lienzo" style="gap:9px">
+            <div style="margin-bottom:2px">
+              <div class="t-titulo">Hola, Victoria</div>
+              <div class="t-cuerpo c-suave">¿Qué quieres hacer hoy?</div>
+            </div>
+            <div class="fila">
+              <svg class="ico"><use href="#i-alerta"/></svg>
+              <div class="txt"><div class="t-fuerte">Cambios importantes</div><div class="t-apoyo c-tenue">2 sin ver</div></div>
+              <svg class="chev"><use href="#i-chev"/></svg>
+            </div>
+            <div class="fila">
+              <svg class="ico"><use href="#i-gente"/></svg>
+              <div class="txt"><div class="t-fuerte">Mis hijos</div><div class="t-apoyo c-tenue">2 registros</div></div>
+              <svg class="chev"><use href="#i-chev"/></svg>
+            </div>
+            <div class="fila">
+              <svg class="ico"><use href="#i-list"/></svg>
+              <div class="txt"><div class="t-fuerte">Listas</div><div class="t-apoyo c-tenue">4 listas</div></div>
+              <svg class="chev"><use href="#i-chev"/></svg>
+            </div>
+            <div class="fila apagada">
+              <svg class="ico gris"><use href="#i-cal"/></svg>
+              <div class="txt"><div class="t-fuerte c-tenue">Agenda</div><div class="t-apoyo c-tenue">Próximamente</div></div>
+            </div>
+            <div class="fila apagada">
+              <svg class="ico gris"><use href="#i-img"/></svg>
+              <div class="txt"><div class="t-fuerte c-tenue">Recuerdos</div><div class="t-apoyo c-tenue">Próximamente</div></div>
+            </div>
+            <div class="fila">
+              <svg class="ico"><use href="#i-med"/></svg>
+              <div class="txt"><div class="t-fuerte">Fichas</div><div class="t-apoyo c-tenue">2 fichas con datos</div></div>
+              <svg class="chev"><use href="#i-chev"/></svg>
+            </div>
+            <div class="scrollcue"></div>
+          </div>
+          <div class="tabbar">
+            <div class="tab on"><svg class="ico"><use href="#i-home"/></svg>Inicio</div>
+            <div class="tab"><svg class="ico"><use href="#i-persona"/></svg>Perfil</div>
+          </div>
+        </div></div>
+        <figcaption>Inicio</figcaption>
+      </figure>
+
+      <figure>
+        <div class="fono"><div class="vidrio">
+          <div class="estado"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="lienzo">
+            <div class="nav">
+              <span><svg class="ico mini"><use href="#i-atras"/></svg>Volver</span>
+              <span>Inicio</span>
+            </div>
+            <div class="t-titulo">Mis hijos</div>
+            <div class="tarj" style="display:flex;align-items:center;gap:10px">
+              <div style="flex:1"><div class="t-sub">Isabella</div><div class="t-apoyo c-suave">7 años</div></div>
+              <svg class="chev"><use href="#i-chev"/></svg>
+            </div>
+            <div class="tarj" style="display:flex;align-items:center;gap:10px">
+              <div style="flex:1"><div class="t-sub">Tu bebé</div><div class="t-apoyo c-suave">Semana 24 · faltan 16 semanas</div></div>
+              <svg class="chev"><use href="#i-chev"/></svg>
+            </div>
+            <div class="t-etiqueta c-tenue" style="margin-top:6px">También sigo</div>
+            <div class="tarj" style="display:flex;align-items:center;gap:10px">
+              <div style="flex:1"><div class="t-sub">Mateo</div><div class="t-apoyo c-suave">3 meses</div></div>
+              <svg class="chev"><use href="#i-chev"/></svg>
+            </div>
+            <div class="btn2" style="margin-top:4px">Agregar otro hijo</div>
+          </div>
+        </div></div>
+        <figcaption>Mis hijos</figcaption>
+      </figure>
+
+      <figure>
+        <div class="fono"><div class="vidrio">
+          <div class="estado"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="lienzo">
+            <div class="nav">
+              <span><svg class="ico mini"><use href="#i-atras"/></svg>Volver</span>
+              <span>Inicio</span>
+            </div>
+            <div class="franja">
+              <div class="t-titulo">Isabella</div>
+              <div class="t-display c-acento">7 años</div>
+            </div>
+            <div class="mosaico">
+              <div class="celda">
+                <svg class="ico"><use href="#i-list"/></svg>
+                <div class="t-fuerte">Listas</div>
+                <div class="t-apoyo c-tenue">3 listas</div>
+              </div>
+              <div class="celda">
+                <svg class="ico"><use href="#i-med"/></svg>
+                <div class="t-fuerte">Ficha</div>
+                <div class="t-apoyo c-tenue">Con datos</div>
+              </div>
+              <div class="celda apagada">
+                <svg class="ico gris"><use href="#i-cal"/></svg>
+                <div class="t-fuerte c-tenue">Agenda</div>
+                <div class="t-apoyo c-tenue">Próximamente</div>
+              </div>
+              <div class="celda apagada">
+                <svg class="ico gris"><use href="#i-img"/></svg>
+                <div class="t-fuerte c-tenue">Recuerdos</div>
+                <div class="t-apoyo c-tenue">Próximamente</div>
+              </div>
+            </div>
+            <div class="fila">
+              <svg class="ico"><use href="#i-cog"/></svg>
+              <div class="txt"><div class="t-fuerte">Editar registro</div><div class="t-apoyo c-tenue">Nombre, fecha y eliminar</div></div>
+              <svg class="chev"><use href="#i-chev"/></svg>
+            </div>
+          </div>
+        </div></div>
+        <figcaption>Tablero del hijo</figcaption>
+      </figure>
+
+      <figure>
+        <div class="fono"><div class="vidrio">
+          <div class="estado"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="lienzo">
+            <div class="t-titulo">Perfil</div>
+            <div class="campo">
+              <div class="t-apoyo c-suave">Tu nombre</div>
+              <div class="caja">Victoria</div>
+              <div class="t-apoyo c-tenue">Es el nombre con el que te ve el resto de la familia.</div>
+            </div>
+            <div class="fila" style="margin-top:4px">
+              <svg class="ico"><use href="#i-med"/></svg>
+              <div class="txt"><div class="t-fuerte">Mis datos para emergencias</div><div class="t-apoyo c-tenue">O+ · Penicilina</div></div>
+              <svg class="chev"><use href="#i-chev"/></svg>
+            </div>
+            <div class="t-etiqueta c-tenue" style="margin-top:6px">Ajustes</div>
+            <div class="fila apagada">
+              <svg class="ico gris"><use href="#i-idioma"/></svg>
+              <div class="txt"><div class="t-fuerte c-tenue">Idioma</div><div class="t-apoyo c-tenue">Español</div></div>
+            </div>
+            <div class="fila apagada">
+              <svg class="ico gris"><use href="#i-tema"/></svg>
+              <div class="txt"><div class="t-fuerte c-tenue">Apariencia</div><div class="t-apoyo c-tenue">La misma del teléfono</div></div>
+            </div>
+            <div class="fila apagada">
+              <svg class="ico gris"><use href="#i-salir"/></svg>
+              <div class="txt"><div class="t-fuerte c-tenue">Cerrar sesión</div><div class="t-apoyo c-tenue">Próximamente</div></div>
+            </div>
+          </div>
+          <div class="tabbar">
+            <div class="tab"><svg class="ico"><use href="#i-home"/></svg>Inicio</div>
+            <div class="tab on"><svg class="ico"><use href="#i-persona"/></svg>Perfil</div>
+          </div>
+        </div></div>
+        <figcaption>Perfil</figcaption>
+      </figure>
+
+    </div>
+
+    <p class="grupo">Listas</p>
+    <div class="galeria">
+
+      <figure>
+        <div class="fono"><div class="vidrio">
+          <div class="estado"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="lienzo">
+            <div class="nav"><span><svg class="ico mini"><use href="#i-atras"/></svg>Volver</span></div>
+            <div class="t-titulo">Crear una lista</div>
+            <div class="t-cuerpo c-suave">¿Para quién es?</div>
+            <div class="tarj" style="display:flex;align-items:center;gap:10px">
+              <div style="flex:1"><div class="t-sub">Isabella</div><div class="t-apoyo c-suave">7 años</div></div>
+            </div>
+            <div class="tarj" style="display:flex;align-items:center;gap:10px">
+              <div style="flex:1"><div class="t-sub">Tu bebé</div><div class="t-apoyo c-suave">Semana 24</div></div>
+            </div>
+            <div class="tarj">
+              <div class="t-fuerte">Para mí</div>
+              <div class="t-apoyo c-suave">Una lista tuya, que no ve nadie más</div>
+            </div>
+          </div>
+        </div></div>
+        <figcaption>¿Para quién?</figcaption>
+      </figure>
+
+      <figure>
+        <div class="fono"><div class="vidrio">
+          <div class="estado"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="lienzo pegado">
+            <div class="nav"><span><svg class="ico mini"><use href="#i-atras"/></svg>Volver</span></div>
+            <div class="t-titulo">Crear una lista</div>
+            <div class="t-cuerpo c-suave">Puedes partir de una de estas, con lo que suele hacer falta.</div>
+            <div class="tarj marcada">
+              <div class="t-fuerte">Bolso para la clínica</div>
+              <div class="t-apoyo c-suave">Lo que hay que tener listo</div>
+              <div class="t-apoyo c-tenue">14 cosas</div>
+            </div>
+            <div class="tarj">
+              <div class="t-fuerte">Primera ropa</div>
+              <div class="t-apoyo c-suave">Tallas del primer mes</div>
+              <div class="t-apoyo c-tenue">11 cosas</div>
+            </div>
+            <div class="tarj marcada">
+              <div class="t-fuerte">Documentos y trámites</div>
+              <div class="t-apoyo c-suave">Partida, seguro, cédula</div>
+              <div class="t-apoyo c-tenue">6 cosas</div>
+            </div>
+            <div class="abajo" style="display:flex;flex-direction:column;gap:6px">
+              <div class="btn">Agregar estas 2 listas</div>
+              <div class="btn3">Crear una en blanco</div>
+            </div>
+          </div>
+        </div></div>
+        <figcaption>Sugerencias por edad</figcaption>
+      </figure>
+
+      <figure>
+        <div class="fono"><div class="vidrio">
+          <div class="estado"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="lienzo" style="gap:9px">
+            <div class="nav">
+              <span><svg class="ico mini"><use href="#i-atras"/></svg>Volver</span>
+              <span>Inicio</span>
+            </div>
+            <div>
+              <div class="t-titulo">Bolso para la clínica</div>
+              <div class="t-apoyo c-tenue">Salud</div>
+            </div>
+            <div class="tarj" style="display:flex;flex-direction:column;gap:5px">
+              <div class="linea"><span class="t-apoyo c-suave">Presupuesto</span><span class="t-cuerpo c-acento">220 USD</span></div>
+              <div class="divisor"></div>
+              <div class="linea"><span class="t-apoyo c-suave">Asignado a las cosas</span><span class="t-cuerpo">185 USD</span></div>
+              <div class="linea"><span class="t-apoyo c-suave">Gastado</span><span class="t-cuerpo">96 USD</span></div>
+              <div class="linea"><span class="t-apoyo c-tenue">Prometido por la familia</span><span class="t-cuerpo c-tenue">40 USD</span></div>
+              <div class="linea"><span class="t-apoyo c-suave">Queda</span><span class="t-cuerpo">124 USD</span></div>
+            </div>
+            <div class="linea" style="margin-top:2px">
+              <span class="t-etiqueta c-tenue">Higiene y pañales</span>
+              <span class="t-etiqueta c-tenue">Precio estimado</span>
+            </div>
+            <div>
+              <div class="item">
+                <div class="marca-check si"><svg><use href="#i-check"/></svg></div>
+                <div class="txt"><div class="t-cuerpo">Pañales recién nacido</div></div>
+                <div class="t-apoyo c-tenue">18–24</div>
+              </div>
+              <div class="item">
+                <div class="marca-check si"><svg><use href="#i-check"/></svg></div>
+                <div class="txt"><div class="t-cuerpo">Toallitas húmedas</div></div>
+                <div class="t-apoyo c-tenue">6–9</div>
+              </div>
+              <div class="item">
+                <div class="marca-check"></div>
+                <div class="txt"><div class="t-cuerpo">Muda de ropa</div><div class="t-apoyo c-tenue">1 en camino</div></div>
+                <div class="t-apoyo c-tenue">20–35</div>
+              </div>
+            </div>
+            <div class="scrollcue"></div>
+          </div>
+        </div></div>
+        <figcaption>Detalle de lista</figcaption>
+      </figure>
+
+      <figure>
+        <div class="fono"><div class="vidrio">
+          <div class="estado"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="lienzo" style="gap:10px">
+            <div class="nav">
+              <span><svg class="ico mini"><use href="#i-atras"/></svg>Volver</span>
+              <span>Inicio</span>
+            </div>
+            <div class="t-titulo">Listas</div>
+            <div class="t-sub">Listas de Isabella</div>
+            <div class="tarj">
+              <div class="t-sub">Vuelta a clases</div>
+              <div class="linea" style="margin-top:8px">
+                <span class="t-apoyo c-tenue">8 de 12 ya las tienen</span>
+                <span class="t-apoyo c-tenue">presupuesto 150 USD</span>
+              </div>
+            </div>
+            <div class="t-sub" style="margin-top:2px">Mis listas</div>
+            <div class="tarj">
+              <div class="t-sub">Supermercado</div>
+              <div class="linea" style="margin-top:8px">
+                <span class="t-apoyo c-tenue">5 de 18 ya las tienen</span>
+              </div>
+            </div>
+            <div class="t-etiqueta c-tenue" style="margin-top:4px">Eliminadas</div>
+            <div class="tarj">
+              <div class="t-fuerte">Útiles del colegio</div>
+              <div class="t-apoyo c-suave">La eliminó Diego, hace 2 días</div>
+              <div class="btn3 izq">Devolver a las listas</div>
+            </div>
+          </div>
+        </div></div>
+        <figcaption>Listas y papelera</figcaption>
+      </figure>
+
+    </div>
+
+    <p class="grupo">Fichas</p>
+    <div class="galeria">
+
+      <figure>
+        <div class="fono"><div class="vidrio">
+          <div class="estado"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="lienzo">
+            <div class="nav">
+              <span><svg class="ico mini"><use href="#i-atras"/></svg>Volver</span>
+              <span>Inicio</span>
+            </div>
+            <div class="t-titulo">Fichas</div>
+            <div class="t-cuerpo c-suave">Los datos de cada uno, para tenerlos a mano cuando hagan falta.</div>
+            <div class="fila">
+              <svg class="ico"><use href="#i-med"/></svg>
+              <div class="txt"><div class="t-fuerte">Mis datos</div><div class="t-apoyo c-tenue">O+ · Penicilina</div></div>
+              <svg class="chev"><use href="#i-chev"/></svg>
+            </div>
+            <div class="fila">
+              <svg class="ico"><use href="#i-med"/></svg>
+              <div class="txt"><div class="t-fuerte">Isabella</div><div class="t-apoyo c-tenue">A+ · Maní</div></div>
+              <svg class="chev"><use href="#i-chev"/></svg>
+            </div>
+            <div class="fila">
+              <svg class="ico"><use href="#i-med"/></svg>
+              <div class="txt"><div class="t-fuerte">Tu bebé</div><div class="t-apoyo c-tenue">Sin llenar</div></div>
+              <svg class="chev"><use href="#i-chev"/></svg>
+            </div>
+          </div>
+        </div></div>
+        <figcaption>Fichas de la familia</figcaption>
+      </figure>
+
+      <figure>
+        <div class="fono"><div class="vidrio">
+          <div class="estado"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="lienzo" style="gap:10px">
+            <div class="nav">
+              <span><svg class="ico mini"><use href="#i-atras"/></svg>Volver</span>
+              <span>Inicio</span>
+            </div>
+            <div class="t-titulo">Isabella</div>
+            <div class="franja" style="text-align:left;padding:13px;gap:9px">
+              <div>
+                <div class="t-apoyo c-suave">Tipo de sangre</div>
+                <div class="t-display c-acento">A+</div>
+              </div>
+              <div>
+                <div class="t-fuerte">Maní</div>
+                <div class="t-cuerpo">Hinchazón y dificultad para respirar</div>
+                <div class="t-cuerpo c-suave">Antihistamínico y llamar al médico</div>
+              </div>
+            </div>
+            <div class="tarj" style="display:flex;flex-direction:column;gap:7px">
+              <div><div class="t-apoyo c-suave">Nombre completo</div><div class="t-cuerpo">Isabella Sofía Guzmán Rivas</div></div>
+              <div><div class="t-apoyo c-suave">Cédula de identidad</div><div class="t-cuerpo">31.204.556</div></div>
+              <div><div class="t-apoyo c-suave">Nacionalidades</div><div class="t-cuerpo">Venezuela, Chile</div></div>
+              <div><div class="t-apoyo c-suave">Pediatra</div><div class="t-cuerpo">Dra. Carmen Ortiz</div></div>
+            </div>
+            <div class="btn2">Descargar en PDF</div>
+            <div class="btn3">Editar la ficha</div>
+          </div>
+        </div></div>
+        <figcaption>Ficha <span>solo lectura</span></figcaption>
+      </figure>
+
+      <figure>
+        <div class="fono"><div class="vidrio">
+          <div class="estado"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="lienzo pegado" style="gap:10px">
+            <div class="nav"><span><svg class="ico mini"><use href="#i-atras"/></svg>Volver</span></div>
+            <div class="t-titulo">Editar</div>
+            <div class="t-etiqueta c-tenue">Antecedentes familiares</div>
+            <div class="t-apoyo c-suave">Quedan guardados con tu hijo, no con quien los aportó.</div>
+            <div class="tarj">
+              <div class="t-fuerte">Madre</div>
+              <div class="t-apoyo c-suave" style="margin-top:3px">Tipo de sangre · O+</div>
+              <div class="t-apoyo c-suave">Diabetes por parte materna</div>
+            </div>
+            <div class="tarj" style="border-style:dashed">
+              <div class="t-fuerte">Padre</div>
+              <div class="t-apoyo c-atencion" style="margin-top:3px">Faltan los datos de Diego. Solo Diego puede llenarlos.</div>
+            </div>
+            <div class="btn3 izq">Agregar otro familiar</div>
+            <div class="abajo"><div class="btn">Guardar</div></div>
+          </div>
+        </div></div>
+        <figcaption>Editar ficha <span>con permisos</span></figcaption>
+      </figure>
+
+      <figure>
+        <div class="fono"><div class="vidrio">
+          <div class="estado"><span>9:41</span><span>▮▮▮</span></div>
+          <div class="lienzo">
+            <div class="nav">
+              <span><svg class="ico mini"><use href="#i-atras"/></svg>Volver</span>
+              <span>Inicio</span>
+            </div>
+            <div class="t-titulo">Cambios importantes</div>
+            <div class="tarj">
+              <div class="t-fuerte">Cambió Alergias de Isabella</div>
+              <div class="t-apoyo c-suave">Diego, hace 3 horas</div>
+            </div>
+            <div class="tarj">
+              <div class="t-fuerte">Eliminó la lista «Útiles del colegio»</div>
+              <div class="t-apoyo c-suave">Diego, ayer</div>
+              <div class="btn3 izq">Devolver a las listas</div>
+            </div>
+            <div class="btn2" style="margin-top:4px">Marcar todo como visto</div>
+          </div>
+        </div></div>
+        <figcaption>Cambios importantes</figcaption>
+      </figure>
+
+    </div>
+  </section>
+
+  <footer>
+    <span>Almácigo · 2026</span>
+    <span>Diseño de producto e implementación</span>
+    <span>Maquetas generadas desde el código</span>
+  </footer>
+
+</div>
+</body>
+</html>

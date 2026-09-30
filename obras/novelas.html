@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Novelas &#183; Victoria Isabel</title>
+<meta name="description" content="Hoja de diseño de Novelas: flujo y pantallas del proyecto.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Cormorant+Garamond:wght@500;600&family=Mulish:wght@400;600;700;800&display=swap">
+<style>
+  :root{color-scheme:light dark}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+</style>
+</head>
+<body>
+<a class="volver" href="../index.html">&#8592; Portafolio</a>
+<style>
+  .volver{position:fixed;top:14px;left:14px;z-index:99;font:600 12.5px/1 ui-sans-serif,system-ui,-apple-system,sans-serif;
+    text-decoration:none;padding:8px 14px;border-radius:999px;backdrop-filter:blur(10px);
+    background:color-mix(in srgb,Canvas 78%,transparent);color:CanvasText;
+    border:1px solid color-mix(in srgb,CanvasText 16%,transparent);transition:transform .25s,border-color .25s}
+  .volver:hover{transform:translateY(-1px);border-color:color-mix(in srgb,CanvasText 34%,transparent)}
+  .volver:focus-visible{outline:2px solid #EC4899;outline-offset:3px}
+  @media print{.volver{display:none}}
+</style>
+<style>
+  /* Paleta tomada de src/app/globals.css (tema "Cálido") */
+  :root {
+    --fondo: #FAF4E9;
+    --superficie: #FFFCF6;
+    --superficie-alt: #F3E7D1;
+    --texto: #3B2A1C;
+    --texto-suave: #5A483A;
+    --texto-tenue: #94806B;
+    --borde: #EADFCB;
+    --borde-fuerte: #DCCBAE;
+    --acento: #D2622F;
+    --acento-texto: #FFFFFF;
+    --acento-suave: #F7E6DA;
+    --pista: #E7DBC4;
+    --marco: #2A1F16;
+    --marco-texto: #C3B29C;
+    --sombra: 0 1px 2px rgba(120,86,48,.06), 0 8px 28px rgba(120,86,48,.12);
+
+    --serif: "DM Serif Display", Georgia, "Times New Roman", serif;
+    --cover: "Cormorant Garamond", Georgia, serif;
+    --ui: "Mulish", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --fondo: #17120D; --superficie: #201A13; --superficie-alt: #2C2418;
+      --texto: #F0E6D8; --texto-suave: #C0B09A; --texto-tenue: #8C7E6C;
+      --borde: #352C20; --borde-fuerte: #4A3E2E;
+      --acento: #E8834F; --acento-texto: #17120D; --acento-suave: #2E2117;
+      --pista: #3A2F22;
+      --marco: #000000; --marco-texto: #7A6C5B;
+      --sombra: 0 1px 2px rgba(0,0,0,.4), 0 8px 28px rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="dark"] {
+    --fondo: #17120D; --superficie: #201A13; --superficie-alt: #2C2418;
+    --texto: #F0E6D8; --texto-suave: #C0B09A; --texto-tenue: #8C7E6C;
+    --borde: #352C20; --borde-fuerte: #4A3E2E;
+    --acento: #E8834F; --acento-texto: #17120D; --acento-suave: #2E2117;
+    --pista: #3A2F22;
+    --marco: #000000; --marco-texto: #7A6C5B;
+    --sombra: 0 1px 2px rgba(0,0,0,.4), 0 8px 28px rgba(0,0,0,.5);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--fondo);
+    color: var(--texto);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hoja { max-width: 1180px; margin: 0 auto; padding: 64px 28px 88px; }
+
+  /* ── Portada ─────────────────────────────────────────────────────────── */
+  .portada { margin-bottom: 72px; }
+  .marca {
+    font-family: var(--serif);
+    font-size: clamp(44px, 9vw, 76px);
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: -.02em;
+    margin: 0 0 14px;
+  }
+  .lema {
+    font-size: clamp(17px, 2.2vw, 20px);
+    color: var(--texto-suave);
+    margin: 0 0 26px;
+    max-width: 46ch;
+    text-wrap: balance;
+  }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 5px 11px;
+    border: 1px solid var(--borde);
+    border-radius: 999px;
+    color: var(--texto-suave);
+    background: var(--superficie);
+    white-space: nowrap;
+  }
+
+  section { margin-bottom: 76px; }
+
+  .rotulo {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--texto-tenue);
+    margin: 0 0 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .rotulo::after { content: ""; flex: 1; height: 1px; background: var(--borde); }
+
+  .grupo { font-size: 13px; font-weight: 600; color: var(--texto-tenue); letter-spacing: .04em; text-transform: uppercase; margin: 0 0 18px; }
+
+  /* ── Mapa ────────────────────────────────────────────────────────────── */
+  .mapa-caja { overflow-x: auto; padding-bottom: 8px; }
+  .mapa { min-width: 880px; width: 100%; height: auto; display: block; }
+  .mapa text { font-family: ui-sans-serif, system-ui, sans-serif; }
+
+  /* ── Galería ─────────────────────────────────────────────────────────── */
+  .galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(430px, 1fr));
+    gap: 42px 30px;
+    margin-bottom: 56px;
+  }
+  .galeria:last-child { margin-bottom: 0; }
+  figure { margin: 0; display: flex; flex-direction: column; }
+  figcaption {
+    margin-top: 14px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--texto);
+  }
+  figcaption span {
+    display: block;
+    font-weight: 400;
+    font-size: 12px;
+    color: var(--texto-tenue);
+    margin-top: 2px;
+  }
+
+  /* ── La ventana ──────────────────────────────────────────────────────── */
+  .nave {
+    background: var(--marco);
+    border-radius: 12px;
+    padding: 0 0 7px;
+    box-shadow: var(--sombra);
+    overflow: hidden;
+  }
+  .barra { height: 32px; display: flex; align-items: center; gap: 7px; padding: 0 11px; }
+  .luz { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.22); flex: 0 0 auto; }
+  .ruta {
+    flex: 1; min-width: 0; height: 19px; margin-left: 6px;
+    border-radius: 5px; background: rgba(255,255,255,.11);
+    display: flex; align-items: center; padding: 0 9px;
+    font-family: var(--mono); font-size: 9.5px; color: var(--marco-texto);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .vidrio {
+    height: 372px;
+    margin: 0 7px;
+    border-radius: 6px;
+    background: var(--fondo);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--ui);
+  }
+  .lienzo { flex: 1; overflow: hidden; padding: 14px 18px 16px; display: flex; flex-direction: column; gap: 11px; }
+  .lienzo.centro { justify-content: center; align-items: center; text-align: center; padding: 14px 42px; }
+  .lienzo.angosto { padding: 14px 76px; }
+
+  /* Cabecera del sitio */
+  .cab {
+    flex: 0 0 34px; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 18px; border-bottom: 1px solid var(--borde); background: var(--superficie);
+  }
+  .cab .logo { font-family: var(--serif); font-size: 16px; color: var(--texto); }
+  .cab .acc { display: flex; align-items: center; gap: 12px; font-size: 10.5px; color: var(--texto-suave); }
+  .cab .acc .cta { background: var(--acento); color: var(--acento-texto); border-radius: 7px; padding: 4px 10px; font-weight: 700; }
+
+  /* Tipografía espejo del tema "Cálido" */
+  .t-hero    { font-family: var(--serif); font-size: 27px; line-height: 1.05; letter-spacing: -.01em; color: var(--texto); }
+  .t-display { font-family: var(--serif); font-size: 21px; line-height: 1.12; color: var(--texto); }
+  .t-titulo  { font-family: var(--serif); font-size: 16px; line-height: 1.2; color: var(--texto); }
+  .t-sub     { font-size: 12.5px; line-height: 17px; font-weight: 700; }
+  .t-cuerpo  { font-size: 11.5px; line-height: 17px; }
+  .t-fuerte  { font-size: 11.5px; line-height: 16px; font-weight: 700; }
+  .t-apoyo   { font-size: 10px; line-height: 14px; }
+  .t-etiqueta{ font-size: 8.5px; line-height: 12px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+  .t-lectura { font-family: var(--cover); font-size: 12.5px; line-height: 19px; color: var(--texto-suave); }
+  .c-suave { color: var(--texto-suave); }
+  .c-tenue { color: var(--texto-tenue); }
+  .c-acento { color: var(--acento); }
+
+  /* Chips de categoría */
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    font-size: 10px; font-weight: 600; padding: 4px 10px; border-radius: 999px;
+    border: 1px solid var(--borde); background: var(--superficie); color: var(--texto-suave);
+    white-space: nowrap;
+  }
+  .chip.on { background: var(--texto); border-color: var(--texto); color: var(--fondo); }
+
+  /* Carátulas generadas (espejo de components/Cover.tsx) */
+  .cover {
+    border-radius: 3px;
+    aspect-ratio: 2 / 3;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 8px 7px;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(120,86,48,.22);
+    overflow: hidden;
+    position: relative;
+  }
+  .cover::before {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(120% 85% at 22% 12%, rgba(255,255,255,.34), transparent 62%);
+  }
+  .cover .ini {
+    position: absolute; top: 4px; right: 8px;
+    font-family: var(--cover); font-size: 30px; font-weight: 600;
+    color: rgba(255,255,255,.30); line-height: 1;
+  }
+  .cover .tit { position: relative; font-family: var(--cover); font-size: 12px; font-weight: 600; line-height: 1.1; }
+  .cover .cat { position: relative; font-size: 7px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; opacity: .78; margin-top: 2px; }
+
+  .estante { display: flex; gap: 11px; }
+  .libro { flex: 0 0 62px; width: 62px; }
+  .libro .n { font-size: 9.5px; font-weight: 700; color: var(--texto); margin-top: 5px; line-height: 1.2; }
+  .libro .a { font-size: 8.5px; color: var(--texto-tenue); }
+
+  .destacado {
+    display: flex; gap: 14px; background: var(--superficie-alt);
+    border-radius: 10px; padding: 13px;
+  }
+  .destacado .cover { flex: 0 0 66px; width: 66px; }
+
+  .tarj { background: var(--superficie); border: 1px solid var(--borde); border-radius: 10px; padding: 11px; }
+  .tarj.marcada { background: var(--acento-suave); border-color: var(--acento); }
+
+  .fila {
+    display: flex; align-items: center; gap: 10px;
+    border-bottom: 1px solid var(--borde); padding: 7px 0;
+  }
+  .fila:last-child { border-bottom: 0; }
+  .fila .txt { flex: 1; min-width: 0; }
+  .fila .num { font-family: var(--mono); font-size: 9.5px; color: var(--texto-tenue); flex: 0 0 17px; }
+  .fila.apagada .txt { opacity: .55; }
+
+  .ico { flex: 0 0 auto; width: 14px; height: 14px; stroke: var(--acento); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .ico.gris { stroke: var(--texto-tenue); }
+  .ico.mini { width: 11px; height: 11px; }
+
+  .marbete { font-size: 8px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 2px 6px; border-radius: 999px; }
+  .marbete.libre { background: var(--acento-suave); color: var(--acento); }
+  .marbete.pub { background: #E3EEE4; color: #2F6B43; }
+  .marbete.bor { background: var(--pista); color: var(--texto-suave); }
+
+  .btn, .btn2, .btn3 {
+    display: block; width: 100%; text-align: center;
+    border-radius: 9px; padding: 8px 12px;
+    font-size: 11.5px; font-weight: 700; border: 1px solid transparent;
+  }
+  .btn { background: var(--acento); color: var(--acento-texto); }
+  .btn2 { background: transparent; color: var(--texto-suave); border-color: var(--borde-fuerte); }
+  .btn3 { background: transparent; color: var(--acento); padding: 6px 12px; }
+
+  .muro {
+    background: var(--superficie); border: 1px solid var(--borde);
+    border-radius: 10px; padding: 16px 14px; text-align: center;
+    display: flex; flex-direction: column; gap: 7px; align-items: center;
+  }
+  .desvanece {
+    background: linear-gradient(to bottom, var(--texto-suave), transparent);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+
+  .campo { display: flex; flex-direction: column; gap: 4px; }
+  .caja { border: 1px solid var(--borde-fuerte); background: var(--superficie); border-radius: 8px; padding: 8px 10px; font-size: 11px; color: var(--texto); }
+  .caja.cursor { border-color: var(--acento); }
+  .caja.alta { min-height: 74px; align-items: flex-start; }
+
+  .barra-ed { display: flex; gap: 3px; border: 1px solid var(--borde); border-bottom: 0; border-radius: 8px 8px 0 0; background: var(--superficie); padding: 5px 7px; }
+  .bot-ed { width: 20px; height: 18px; border-radius: 4px; display: grid; place-items: center; font-size: 10px; font-weight: 700; color: var(--texto-suave); }
+  .bot-ed.on { background: var(--superficie-alt); color: var(--texto); }
+  .caja.pegada { border-radius: 0 0 8px 8px; }
+
+  .linea { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .divisor { height: 1px; background: var(--borde); margin: 2px 0; }
+
+  .lateral { flex: 0 0 96px; border-right: 1px solid var(--borde); background: var(--superficie); padding: 12px 10px; display: flex; flex-direction: column; gap: 3px; }
+  .lat-item { font-size: 10px; color: var(--texto-suave); padding: 5px 7px; border-radius: 6px; }
+  .lat-item.on { background: var(--superficie-alt); color: var(--texto); font-weight: 700; }
+  .split { flex: 1; display: flex; overflow: hidden; }
+
+  .marca-agua { font-family: var(--cover); font-size: 8.5px; color: var(--texto-tenue); }
+
+  footer {
+    border-top: 1px solid var(--borde);
+    padding-top: 24px;
+    color: var(--texto-tenue);
+    font-size: 13px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+  }
+
+  @media (max-width: 640px) {
+    .hoja { padding: 44px 18px 64px; }
+    section { margin-bottom: 60px; }
+    .galeria { grid-template-columns: 1fr; gap: 34px; }
+    .lienzo.angosto { padding: 14px 34px; }
+    .lienzo.centro { padding: 14px 24px; }
+  }
+</style>
+
+<svg style="display:none" aria-hidden="true">
+  <symbol id="i-candado" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></symbol>
+  <symbol id="i-libro" viewBox="0 0 24 24"><path d="M4 4.5h6a3 3 0 0 1 3 3V21a2.5 2.5 0 0 0-2.5-2.5H4zM20 4.5h-6a3 3 0 0 0-3 3V21a2.5 2.5 0 0 1 2.5-2.5H20z"/></symbol>
+  <symbol id="i-atras" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+  <symbol id="i-mas" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-lapiz" viewBox="0 0 24 24"><path d="M4 20h4L20 8a2.8 2.8 0 0 0-4-4L4 16z"/></symbol>
+</svg>
+
+<div class="hoja">
+
+  <header class="portada">
+    <h1 class="marca">Novelas</h1>
+    <p class="lema">Plataforma de lectura por suscripción. Novelas y cuentos cortos para leer donde sea, con el primer capítulo siempre abierto.</p>
+    <div class="meta">
+      <span class="pill">Next.js</span>
+      <span class="pill">TypeScript</span>
+      <span class="pill">Supabase</span>
+      <span class="pill">Tiptap</span>
+      <span class="pill">Mercado Pago</span>
+      <span class="pill">2026</span>
+    </div>
+  </header>
+
+  <section>
+    <p class="rotulo">Flujo</p>
+    <div class="mapa-caja">
+      <svg class="mapa" viewBox="0 0 900 400" role="img" aria-label="Diagrama de navegación y del muro de pago">
+        <defs>
+          <marker id="punta" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto">
+            <path d="M0 0.4 L7 3.2 L0 6" fill="none" stroke="var(--borde-fuerte)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+
+        <g font-size="13" fill="var(--texto)">
+          <text x="0" y="18" font-size="10" letter-spacing="1.4" fill="var(--texto-tenue)" font-weight="600">QUIEN LLEGA</text>
+          <rect x="0" y="30" width="150" height="46" rx="10" fill="var(--superficie)" stroke="var(--borde)"/>
+          <text x="16" y="53" font-weight="600">Catálogo</text>
+          <text x="16" y="68" font-size="10.5" fill="var(--texto-tenue)">sin cuenta</text>
+
+          <path d="M150 53 H196" stroke="var(--borde-fuerte)" stroke-width="1.4" fill="none" marker-end="url(#punta)"/>
+
+          <rect x="200" y="30" width="150" height="46" rx="10" fill="var(--superficie)" stroke="var(--borde)"/>
+          <text x="216" y="53" font-weight="600">Ficha de obra</text>
+          <text x="216" y="68" font-size="10.5" fill="var(--texto-tenue)">sinopsis y capítulos</text>
+
+          <path d="M350 53 H396" stroke="var(--borde-fuerte)" stroke-width="1.4" fill="none" marker-end="url(#punta)"/>
+
+          <rect x="400" y="30" width="150" height="46" rx="10" fill="var(--acento-suave)" stroke="var(--acento)"/>
+          <text x="416" y="53" font-weight="600">Capítulo 1</text>
+          <text x="416" y="68" font-size="10.5" fill="var(--texto-suave)">gratis, siempre</text>
+
+          <path d="M550 53 H596" stroke="var(--borde-fuerte)" stroke-width="1.4" fill="none" marker-end="url(#punta)"/>
+
+          <rect x="600" y="30" width="150" height="46" rx="10" fill="var(--superficie)" stroke="var(--borde-fuerte)" stroke-width="1.5"/>
+          <text x="616" y="53" font-weight="600">Capítulo 2</text>
+          <text x="616" y="68" font-size="10.5" fill="var(--texto-suave)">aquí aparece el muro</text>
+
+          <path d="M675 76 V112" stroke="var(--borde-fuerte)" stroke-width="1.4" fill="none" marker-end="url(#punta)"/>
+
+          <text x="600" y="106" font-size="10" letter-spacing="1.4" fill="var(--texto-tenue)" font-weight="600">PAGO</text>
+          <rect x="600" y="116" width="150" height="42" rx="10" fill="var(--superficie)" stroke="var(--borde)"/>
+          <text x="616" y="134" font-weight="600" font-size="12.5">Suscribir</text>
+          <text x="616" y="149" font-size="10.5" fill="var(--texto-suave)">CLP 4.990 / mes</text>
+
+          <path d="M675 158 V190" stroke="var(--borde-fuerte)" stroke-width="1.4" fill="none" marker-end="url(#punta)"/>
+          <rect x="600" y="194" width="150" height="42" rx="10" fill="var(--superficie)" stroke="var(--borde)"/>
+          <text x="616" y="212" font-weight="600" font-size="12.5">Mercado Pago</text>
+          <text x="616" y="227" font-size="10.5" fill="var(--texto-suave)">checkout externo</text>
+
+          <path d="M675 236 V268" stroke="var(--borde-fuerte)" stroke-width="1.4" fill="none" marker-end="url(#punta)"/>
+          <rect x="600" y="272" width="150" height="42" rx="10" fill="var(--acento-suave)" stroke="var(--acento)"/>
+          <text x="616" y="290" font-weight="600" font-size="12.5">Retorno</text>
+          <text x="616" y="305" font-size="10.5" fill="var(--texto-suave)">catálogo completo</text>
+
+          <path d="M600 293 H470 V80" stroke="var(--borde-fuerte)" stroke-width="1.2" stroke-dasharray="3 3" fill="none" marker-end="url(#punta)"/>
+          <text x="356" y="297" font-size="10.5" fill="var(--texto-tenue)">vuelve a leer sin muro</text>
+
+          <text x="0" y="166" font-size="10" letter-spacing="1.4" fill="var(--texto-tenue)" font-weight="600">QUIEN PUBLICA</text>
+          <rect x="0" y="176" width="150" height="42" rx="10" fill="var(--superficie)" stroke="var(--borde)"/>
+          <text x="16" y="202" font-weight="600" font-size="12.5">Ingreso</text>
+
+          <path d="M150 197 H196" stroke="var(--borde-fuerte)" stroke-width="1.4" fill="none" marker-end="url(#punta)"/>
+          <rect x="200" y="176" width="150" height="42" rx="10" fill="var(--superficie)" stroke="var(--borde)"/>
+          <text x="216" y="194" font-weight="600" font-size="12.5">Panel</text>
+          <text x="216" y="209" font-size="10.5" fill="var(--texto-suave)">obras y capítulos</text>
+
+          <path d="M350 197 H396" stroke="var(--borde-fuerte)" stroke-width="1.4" fill="none" marker-end="url(#punta)"/>
+          <rect x="400" y="176" width="150" height="42" rx="10" fill="var(--superficie)" stroke="var(--borde)"/>
+          <text x="416" y="194" font-weight="600" font-size="12.5">Editor</text>
+          <text x="416" y="209" font-size="10.5" fill="var(--texto-suave)">texto enriquecido</text>
+
+          <path d="M475 218 V250 H240 V222" stroke="var(--borde-fuerte)" stroke-width="1.2" stroke-dasharray="3 3" fill="none" marker-end="url(#punta)"/>
+          <text x="286" y="266" font-size="10.5" fill="var(--texto-tenue)">borrador → publicado</text>
+
+          <text x="0" y="330" font-size="10" letter-spacing="1.4" fill="var(--texto-tenue)" font-weight="600">LO QUE DECIDE EL ACCESO</text>
+          <rect x="0" y="340" width="530" height="44" rx="10" fill="var(--superficie)" stroke="var(--borde)"/>
+          <text x="16" y="358" font-size="11.5" fill="var(--texto-suave)">Número de capítulo = 1 &#160;·&#160; o suscripción vigente</text>
+          <text x="16" y="374" font-size="11.5" fill="var(--texto-suave)">Se resuelve en el servidor: el texto pagado nunca se envía al navegador.</text>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo">Pantallas</p>
+
+    <p class="grupo">Lectura</p>
+    <div class="galeria">
+
+      <figure>
+        <div class="nave">
+          <div class="barra"><span class="luz"></span><span class="luz"></span><span class="luz"></span><span class="ruta">novelas.cl</span></div>
+          <div class="vidrio">
+            <div class="cab">
+              <span class="logo">Novelas</span>
+              <span class="acc"><span>Entrar</span><span class="cta">Suscribirme</span></span>
+            </div>
+            <div class="lienzo">
+              <div class="t-hero" style="max-width:15ch">Historias para leer donde sea.</div>
+              <div class="t-cuerpo c-tenue" style="max-width:44ch;margin-top:-4px">Novelas y cuentos cortos por suscripción mensual. El primer capítulo siempre es gratis.</div>
+              <div class="chips" style="margin-top:2px">
+                <span class="chip on">Todos</span>
+                <span class="chip">Fantasía</span>
+                <span class="chip">Romance</span>
+                <span class="chip">Misterio</span>
+                <span class="chip">Infantil</span>
+              </div>
+              <div class="destacado">
+                <div class="cover" style="background:#2F6B43"><span class="ini">L</span><span class="tit">La casa de los inviernos</span><span class="cat">Fantasía</span></div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:4px;justify-content:center">
+                  <div class="t-etiqueta c-acento">Destacado</div>
+                  <div class="t-display">La casa de los inviernos</div>
+                  <div class="t-apoyo c-tenue">Marina Cortés · Fantasía · 12 cap.</div>
+                  <div class="t-cuerpo c-suave" style="margin-top:2px">Una hermana que vuelve al sur a cerrar una casa y encuentra el pueblo tal como lo dejó, salvo por un detalle.</div>
+                </div>
+              </div>
+              <div class="linea" style="margin-top:2px"><span class="t-titulo">Romance</span></div>
+              <div class="estante">
+                <div class="libro"><div class="cover" style="background:#B0497A"><span class="ini">C</span><span class="tit">Cartas al puerto</span></div><div class="n">Cartas al puerto</div><div class="a">Ana Ruiz</div></div>
+                <div class="libro"><div class="cover" style="background:#C4623A"><span class="ini">E</span><span class="tit">El último tren</span></div><div class="n">El último tren</div><div class="a">J. Peña</div></div>
+                <div class="libro"><div class="cover" style="background:#8A6D3B"><span class="ini">V</span><span class="tit">Verano prestado</span></div><div class="n">Verano prestado</div><div class="a">L. Salas</div></div>
+                <div class="libro"><div class="cover" style="background:#5B4B8A"><span class="ini">N</span><span class="tit">Nadie en la plaza</span></div><div class="n">Nadie en la plaza</div><div class="a">R. Ortiz</div></div>
+                <div class="libro" style="opacity:.4"><div class="cover" style="background:#2C7A7B"><span class="ini">S</span><span class="tit">Silencio azul</span></div><div class="n">Silencio azul</div><div class="a">M. Vera</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <figcaption>Catálogo<span>Destacado y estanterías por categoría. Las carátulas sin imagen se generan por CSS a partir del color de su género.</span></figcaption>
+      </figure>
+
+      <figure>
+        <div class="nave">
+          <div class="barra"><span class="luz"></span><span class="luz"></span><span class="luz"></span><span class="ruta">novelas.cl/obra/la-casa-de-los-inviernos</span></div>
+          <div class="vidrio">
+            <div class="cab">
+              <span class="logo">Novelas</span>
+              <span class="acc"><span>Entrar</span><span class="cta">Suscribirme</span></span>
+            </div>
+            <div class="lienzo">
+              <div style="display:flex;gap:14px">
+                <div class="cover" style="background:#2F6B43;flex:0 0 78px"><span class="ini">L</span><span class="tit">La casa de los inviernos</span><span class="cat">Fantasía</span></div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:5px">
+                  <div class="t-display">La casa de los inviernos</div>
+                  <div class="t-apoyo c-tenue">Marina Cortés · Fantasía · 12 capítulos</div>
+                  <div class="t-cuerpo c-suave">Una hermana vuelve al sur a cerrar la casa familiar y encuentra el pueblo intacto, salvo por un detalle que nadie quiere nombrar.</div>
+                  <div class="btn" style="width:auto;padding:7px 14px;margin-top:3px">Leer el capítulo 1</div>
+                </div>
+              </div>
+              <div class="divisor"></div>
+              <div class="t-sub">Capítulos</div>
+              <div style="overflow:hidden">
+                <div class="fila"><span class="num">01</span><span class="txt t-fuerte">La casa sigue ahí</span><span class="marbete libre">Gratis</span></div>
+                <div class="fila apagada"><span class="num">02</span><span class="txt t-fuerte">Lo que dejó el invierno</span><svg class="ico gris mini"><use href="#i-candado"/></svg></div>
+                <div class="fila apagada"><span class="num">03</span><span class="txt t-fuerte">El nombre de la vecina</span><svg class="ico gris mini"><use href="#i-candado"/></svg></div>
+                <div class="fila apagada"><span class="num">04</span><span class="txt t-fuerte">Una puerta que no cierra</span><svg class="ico gris mini"><use href="#i-candado"/></svg></div>
+                <div class="fila apagada"><span class="num">05</span><span class="txt t-fuerte">Marzo otra vez</span><svg class="ico gris mini"><use href="#i-candado"/></svg></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <figcaption>Ficha de obra<span>El primer capítulo queda marcado como gratis; el resto muestra candado hasta que haya suscripción vigente.</span></figcaption>
+      </figure>
+
+      <figure>
+        <div class="nave">
+          <div class="barra"><span class="luz"></span><span class="luz"></span><span class="luz"></span><span class="ruta">novelas.cl/obra/la-casa-de-los-inviernos/capitulo/1</span></div>
+          <div class="vidrio">
+            <div class="cab">
+              <span class="logo">Novelas</span>
+              <span class="acc"><span>Capítulo 1 de 12</span></span>
+            </div>
+            <div class="lienzo angosto">
+              <div class="t-apoyo c-tenue" style="display:flex;align-items:center;gap:4px"><svg class="ico gris mini"><use href="#i-atras"/></svg>La casa de los inviernos</div>
+              <div class="t-display" style="margin-top:2px">La casa sigue ahí</div>
+              <div class="t-lectura">El tren llegó a las seis y cuarto, con esa puntualidad que en el sur todavía se cumple sin que nadie la celebre. Bajé con una maleta y las llaves en el bolsillo del abrigo, y el aire olía a leña mojada.</div>
+              <div class="t-lectura">La casa estaba al final de la calle, donde siempre. Nadie había cortado el pasto en cuatro años, pero la reja abrió sin quejarse, como si la hubieran usado el día anterior.</div>
+              <div class="t-lectura">Fue entonces cuando vi la luz encendida en la cocina.</div>
+              <div style="flex:1"></div>
+              <div class="divisor"></div>
+              <div class="linea"><span class="t-apoyo c-tenue">Capítulo 1</span><span class="t-apoyo c-acento" style="font-weight:700;display:flex;align-items:center;gap:3px">Siguiente<svg class="ico mini"><use href="#i-chev"/></svg></span></div>
+            </div>
+          </div>
+        </div>
+        <figcaption>Lector<span>Columna angosta y serif de lectura. Sin distracciones: solo el texto y el paso al capítulo siguiente.</span></figcaption>
+      </figure>
+
+      <figure>
+        <div class="nave">
+          <div class="barra"><span class="luz"></span><span class="luz"></span><span class="luz"></span><span class="ruta">novelas.cl/obra/la-casa-de-los-inviernos/capitulo/2</span></div>
+          <div class="vidrio">
+            <div class="cab">
+              <span class="logo">Novelas</span>
+              <span class="acc"><span>Capítulo 2 de 12</span></span>
+            </div>
+            <div class="lienzo angosto">
+              <div class="t-apoyo c-tenue" style="display:flex;align-items:center;gap:4px"><svg class="ico gris mini"><use href="#i-atras"/></svg>La casa de los inviernos</div>
+              <div class="t-display" style="margin-top:2px">Lo que dejó el invierno</div>
+              <div class="t-lectura desvanece">La cocina estaba tibia y había una taza sobre la mesa, todavía sin lavar. Me quedé en el umbral un rato largo, calculando cuántas personas tenían llave de esta casa además de mí.</div>
+              <div class="muro" style="margin-top:2px">
+                <svg class="ico" style="width:17px;height:17px"><use href="#i-candado"/></svg>
+                <div class="t-sub">Sigue leyendo con la suscripción</div>
+                <div class="t-apoyo c-tenue" style="max-width:34ch">CLP 4.990 al mes. Acceso a todo el catálogo, cancela cuando quieras.</div>
+                <div class="btn" style="width:auto;padding:8px 18px;margin-top:3px">Suscribirme</div>
+                <div class="t-apoyo c-tenue">¿Ya tienes cuenta? Inicia sesión</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <figcaption>Muro de pago<span>El capítulo se corta con un degradado. El texto bloqueado no viaja al navegador: la comprobación ocurre en el servidor.</span></figcaption>
+      </figure>
+
+      <figure>
+        <div class="nave">
+          <div class="barra"><span class="luz"></span><span class="luz"></span><span class="luz"></span><span class="ruta">novelas.cl/suscribir</span></div>
+          <div class="vidrio">
+            <div class="cab">
+              <span class="logo">Novelas</span>
+              <span class="acc"><span>Mi cuenta</span></span>
+            </div>
+            <div class="lienzo centro">
+              <div class="t-hero">Suscríbete a Novelas</div>
+              <div class="t-cuerpo c-tenue" style="max-width:40ch">CLP 4.990 al mes. Acceso a todo el catálogo, cancela cuando quieras.</div>
+              <div class="tarj" style="width:100%;text-align:left;display:flex;flex-direction:column;gap:7px;margin-top:6px">
+                <div class="linea"><span class="t-fuerte">Plan mensual</span><span class="t-sub">CLP 4.990</span></div>
+                <div class="divisor"></div>
+                <div class="fila" style="border:0;padding:3px 0"><svg class="ico mini"><use href="#i-libro"/></svg><span class="txt t-apoyo c-suave">Todas las obras publicadas</span></div>
+                <div class="fila" style="border:0;padding:3px 0"><svg class="ico mini"><use href="#i-libro"/></svg><span class="txt t-apoyo c-suave">Capítulos nuevos apenas salen</span></div>
+                <div class="fila" style="border:0;padding:3px 0"><svg class="ico mini"><use href="#i-libro"/></svg><span class="txt t-apoyo c-suave">Cancelas cuando quieras, sin llamar a nadie</span></div>
+              </div>
+              <div class="btn" style="margin-top:6px">Continuar con Mercado Pago</div>
+              <div class="t-apoyo c-tenue">Conservas el acceso hasta el final del período pagado.</div>
+            </div>
+          </div>
+        </div>
+        <figcaption>Suscripción<span>Un solo plan y una sola decisión. El cobro se delega a Mercado Pago; la app solo guarda el estado.</span></figcaption>
+      </figure>
+
+      <figure>
+        <div class="nave">
+          <div class="barra"><span class="luz"></span><span class="luz"></span><span class="luz"></span><span class="ruta">novelas.cl/suscribir/retorno</span></div>
+          <div class="vidrio">
+            <div class="cab">
+              <span class="logo">Novelas</span>
+              <span class="acc"><span>Mi cuenta</span></span>
+            </div>
+            <div class="lienzo centro">
+              <div class="t-hero">Ya tienes suscripción activa</div>
+              <div class="t-cuerpo c-tenue">Disfruta el catálogo completo cuando quieras.</div>
+              <div class="btn" style="width:auto;padding:8px 20px;margin-top:8px">Volver al catálogo</div>
+              <div class="divisor" style="width:100%;margin:14px 0 10px"></div>
+              <div class="t-apoyo c-tenue" style="max-width:42ch">¿Quieres dejar de leer? Puedes cancelar cuando quieras. Conservas el acceso hasta el final del período ya pagado.</div>
+              <div class="btn2" style="width:auto;padding:6px 14px;margin-top:6px">Cancelar suscripción</div>
+            </div>
+          </div>
+        </div>
+        <figcaption>Retorno del pago<span>La cancelación está a la vista, no escondida en configuración, y explica exactamente qué pasa después.</span></figcaption>
+      </figure>
+
+    </div>
+
+    <p class="grupo">Publicación</p>
+    <div class="galeria">
+
+      <figure>
+        <div class="nave">
+          <div class="barra"><span class="luz"></span><span class="luz"></span><span class="luz"></span><span class="ruta">novelas.cl/admin</span></div>
+          <div class="vidrio">
+            <div class="cab">
+              <span class="logo">Novelas</span>
+              <span class="acc"><span>Panel</span><span>Salir</span></span>
+            </div>
+            <div class="split">
+              <div class="lateral">
+                <div class="lat-item on">Obras</div>
+                <div class="lat-item">Categorías</div>
+                <div class="lat-item">Suscriptores</div>
+                <div class="lat-item">Ver el sitio</div>
+              </div>
+              <div class="lienzo">
+                <div class="linea">
+                  <span class="t-display">Obras</span>
+                  <span class="btn" style="width:auto;padding:6px 12px;display:flex;align-items:center;gap:4px"><svg class="ico mini" style="stroke:var(--acento-texto)"><use href="#i-mas"/></svg>Nueva obra</span>
+                </div>
+                <div style="overflow:hidden">
+                  <div class="fila"><div class="cover" style="background:#2F6B43;flex:0 0 22px"><span class="tit" style="font-size:6px">L</span></div><span class="txt"><span class="t-fuerte">La casa de los inviernos</span><br><span class="t-apoyo c-tenue">Fantasía · 12 capítulos</span></span><span class="marbete pub">Publicada</span></div>
+                  <div class="fila"><div class="cover" style="background:#B0497A;flex:0 0 22px"><span class="tit" style="font-size:6px">C</span></div><span class="txt"><span class="t-fuerte">Cartas al puerto</span><br><span class="t-apoyo c-tenue">Romance · 8 capítulos</span></span><span class="marbete pub">Publicada</span></div>
+                  <div class="fila"><div class="cover" style="background:#5B4B8A;flex:0 0 22px"><span class="tit" style="font-size:6px">N</span></div><span class="txt"><span class="t-fuerte">Nadie en la plaza</span><br><span class="t-apoyo c-tenue">Misterio · 3 capítulos</span></span><span class="marbete bor">Borrador</span></div>
+                  <div class="fila"><div class="cover" style="background:#E0992E;flex:0 0 22px"><span class="tit" style="font-size:6px">E</span></div><span class="txt"><span class="t-fuerte">El faro de arena</span><br><span class="t-apoyo c-tenue">Aventura · 1 capítulo</span></span><span class="marbete bor">Borrador</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <figcaption>Panel de obras<span>Estado a la vista en cada fila: publicada o borrador, con el conteo real de capítulos.</span></figcaption>
+      </figure>
+
+      <figure>
+        <div class="nave">
+          <div class="barra"><span class="luz"></span><span class="luz"></span><span class="luz"></span><span class="ruta">novelas.cl/admin/works/1/chapters/4/edit</span></div>
+          <div class="vidrio">
+            <div class="cab">
+              <span class="logo">Novelas</span>
+              <span class="acc"><span>Guardado hace un momento</span><span class="cta">Publicar</span></span>
+            </div>
+            <div class="lienzo">
+              <div class="t-apoyo c-tenue" style="display:flex;align-items:center;gap:4px"><svg class="ico gris mini"><use href="#i-atras"/></svg>La casa de los inviernos · Capítulo 4</div>
+              <div class="campo">
+                <span class="t-etiqueta c-tenue">Título del capítulo</span>
+                <div class="caja">Una puerta que no cierra</div>
+              </div>
+              <div class="campo">
+                <span class="t-etiqueta c-tenue">Texto</span>
+                <div>
+                  <div class="barra-ed">
+                    <span class="bot-ed on">B</span>
+                    <span class="bot-ed" style="font-style:italic">I</span>
+                    <span class="bot-ed">H2</span>
+                    <span class="bot-ed">&#8220;</span>
+                    <span class="bot-ed">&#8212;</span>
+                  </div>
+                  <div class="caja pegada alta">
+                    <span class="t-lectura" style="color:var(--texto)">Cerré con llave dos veces y aun así, en la mañana, la puerta del fondo estaba abierta de par en par.<span class="c-acento">|</span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="linea">
+                <span class="t-apoyo c-tenue">Borrador · 412 palabras</span>
+                <span class="t-apoyo c-tenue">Se guarda solo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <figcaption>Editor de capítulo<span>Texto enriquecido con Tiptap, guardado automático y publicación como paso aparte de la escritura.</span></figcaption>
+      </figure>
+
+    </div>
+  </section>
+
+  <footer>
+    <span>Novelas · 2026</span>
+    <span>Next.js · Supabase · Tiptap · Mercado Pago</span>
+    <span>Maquetas dibujadas con la paleta y las fuentes del proyecto</span>
+  </footer>
+
+</div>
+</body>
+</html>

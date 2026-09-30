@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Victoria Isabel Lemus Córdova</title>
+<meta name="description" content="Producto digital, datos y tecnología. Encargada de producto en Daelead, proyectos propios en React Native, Next.js y Astro, y campañas con resultados medibles.">
+<link rel="canonical" href="https://vickybel.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Victoria Isabel Lemus Córdova">
+<meta property="og:description" content="Producto digital, datos y tecnología.">
+<meta property="og:url" content="https://vickybel.github.io/">
+<meta property="og:locale" content="es_CL">
+<meta property="og:image" content="https://vickybel.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Victoria Isabel Lemus Córdova — Producto, datos y desarrollo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://vickybel.github.io/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%239B8AC4'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' font-weight='700' fill='%23fff' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --fondo: #FBFAFC;
+    --superficie: #FFFFFF;
+    --superficie-alt: #F6F4FA;
+    --texto: #1E1B26;
+    --texto-suave: #5F5972;
+    --texto-tenue: #948DA6;
+    --borde: #ECE9F2;
+    --borde-fuerte: #DCD7E6;
+    --malva: #9B8AC4;
+    --malva-hondo: #6F5F9B;
+    --malva-tenue: #E7E2F2;
+    --malva-humo: #F3F0F9;
+    --rosa: #D4A5B8;
+    --rosa-humo: #F8F0F3;
+    --sobre-malva: #FFFFFF;
+    --sombra-s: 0 1px 2px rgba(30,27,38,.04);
+    --sombra-m: 0 1px 3px rgba(30,27,38,.05), 0 10px 30px rgba(30,27,38,.06);
+
+    --display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+    --ui: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --ancho: 1040px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --fondo: #131118;
+      --superficie: #1B1822;
+      --superficie-alt: #221E2C;
+      --texto: #EFECF5;
+      --texto-suave: #B4ADC4;
+      --texto-tenue: #837B95;
+      --borde: #2A2634;
+      --borde-fuerte: #3C3648;
+      --malva: #B5A5DC;
+      --malva-hondo: #C9BCE8;
+      --malva-tenue: #2C2640;
+      --malva-humo: #221E30;
+      --rosa: #DBAFC0;
+      --rosa-humo: #2A2028;
+      --sobre-malva: #131118;
+      --sombra-s: 0 1px 2px rgba(0,0,0,.4);
+      --sombra-m: 0 1px 3px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="dark"] {
+    --fondo: #131118;
+    --superficie: #1B1822;
+    --superficie-alt: #221E2C;
+    --texto: #EFECF5;
+    --texto-suave: #B4ADC4;
+    --texto-tenue: #837B95;
+    --borde: #2A2634;
+    --borde-fuerte: #3C3648;
+    --malva: #B5A5DC;
+    --malva-hondo: #C9BCE8;
+    --malva-tenue: #2C2640;
+    --malva-humo: #221E30;
+    --rosa: #DBAFC0;
+    --rosa-humo: #2A2028;
+    --sobre-malva: #131118;
+    --sombra-s: 0 1px 2px rgba(0,0,0,.4);
+    --sombra-m: 0 1px 3px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.5);
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0; background: var(--fondo); color: var(--texto);
+    font-family: var(--ui); font-size: 16px; line-height: 1.62;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible { outline: 2px solid var(--malva); outline-offset: 3px; border-radius: 3px; }
+  .env { max-width: var(--ancho); margin: 0 auto; padding: 0 26px; }
+
+  /* Fondo */
+  .aurora { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+  .aurora b { position: absolute; display: block; border-radius: 50%; filter: blur(88px); opacity: .42; }
+  .aurora b:nth-child(1) { width: 42vw; height: 42vw; left: -12vw; top: -10vw; background: radial-gradient(circle, var(--malva-tenue), transparent 70%); animation: flota1 30s ease-in-out infinite; }
+  .aurora b:nth-child(2) { width: 34vw; height: 34vw; right: -8vw; top: 34vh; background: radial-gradient(circle, var(--rosa-humo), transparent 70%); animation: flota2 36s ease-in-out infinite; }
+  @keyframes flota1 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(5vw,4vh) scale(1.1)} }
+  @keyframes flota2 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-5vw,6vh) scale(1.08)} }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .sube { animation: sube .6s cubic-bezier(.2,.7,.3,1) both; }
+    @keyframes sube { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    .d1{animation-delay:.04s}.d2{animation-delay:.10s}.d3{animation-delay:.16s}
+    .d4{animation-delay:.22s}.d5{animation-delay:.28s}.d6{animation-delay:.34s}
+  }
+
+  /* Cabecera */
+  header.top {
+    position: sticky; top: 0; z-index: 20; backdrop-filter: blur(12px);
+    background: color-mix(in srgb, var(--fondo) 84%, transparent);
+    border-bottom: 1px solid var(--borde);
+  }
+  .top .env { display: flex; align-items: center; justify-content: space-between; height: 58px; gap: 16px; }
+  .firma { font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: -.01em; color: var(--texto-suave); }
+  .firma b { color: var(--texto); font-weight: 500; }
+  .top nav { display: flex; gap: 20px; font-size: 13.5px; color: var(--texto-suave); }
+  .top nav a { position: relative; padding: 2px 0; transition: color .25s; }
+  .top nav a::after {
+    content: ""; position: absolute; left: 0; right: 100%; bottom: -1px; height: 1.5px;
+    background: var(--malva); transition: right .3s cubic-bezier(.2,.7,.3,1);
+  }
+  .top nav a:hover { color: var(--texto); }
+  .top nav a:hover::after { right: 0; }
+  @media (max-width: 780px) { .top nav { display: none; } }
+
+  /* Saludo */
+  .saludo { padding: 84px 0 60px; max-width: 66ch; }
+  .hola { font-family: var(--mono); font-size: 13px; color: var(--malva-hondo); margin: 0 0 20px; }
+  .saludo h1 {
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(34px, 5.4vw, 60px); line-height: 1.1;
+    letter-spacing: -.03em; margin: 0; text-wrap: balance; color: var(--texto);
+  }
+  .saludo h1 b { font-weight: 600; display: block; }
+  .saludo .intro { font-size: clamp(15px, 1.7vw, 17px); color: var(--texto-suave); margin: 22px 0 0; max-width: 58ch; text-wrap: pretty; }
+  .saludo .intro em { font-style: normal; color: var(--malva-hondo); }
+  .saludo p { font-size: 15.5px; color: var(--texto-suave); margin: 14px 0 0; text-wrap: pretty; }
+  .marcadores { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 26px; font-family: var(--mono); font-size: 12.5px; color: var(--texto-tenue); }
+  .marcadores span { display: inline-flex; align-items: center; gap: 7px; }
+  .marcadores i { width: 4px; height: 4px; border-radius: 50%; background: var(--malva); display: block; }
+  .acciones { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    border-radius: 10px; padding: 11px 18px; font-size: 14px; font-weight: 600;
+    border: 1px solid transparent; transition: transform .26s cubic-bezier(.2,.7,.3,1), border-color .25s, background .25s;
+  }
+  .btn.lleno { background: var(--malva-hondo); color: var(--sobre-malva); }
+  .btn.lleno:hover { transform: translateY(-2px); }
+  .btn.linea { border-color: var(--borde-fuerte); background: var(--superficie); }
+  .btn.linea:hover { transform: translateY(-2px); border-color: var(--malva); }
+  .btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Secciones */
+  section.bloque { padding: 68px 0 0; }
+  .rotulo {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--texto-tenue); margin: 0 0 18px;
+    display: flex; align-items: center; gap: 13px;
+  }
+  .rotulo::after { content: ""; flex: 1; height: 1px; background: var(--borde); }
+  h2.titulo {
+    font-family: var(--display); font-weight: 500;
+    font-size: clamp(23px, 3vw, 30px); letter-spacing: -.024em;
+    line-height: 1.16; margin: 0 0 26px; text-wrap: balance;
+  }
+
+  /* Tecnologías */
+  .tecs { display: grid; grid-template-columns: repeat(auto-fit, minmax(232px, 1fr)); gap: 1px; background: var(--borde); border: 1px solid var(--borde); border-radius: 14px; overflow: hidden; }
+  .tec-grupo { background: var(--superficie); padding: 18px 20px; transition: background .3s; }
+  .tec-grupo:hover { background: var(--malva-humo); }
+  .tec-grupo h3 { font-family: var(--mono); font-size: 10.5px; letter-spacing: .13em; text-transform: uppercase; color: var(--texto-tenue); margin: 0 0 12px; font-weight: 500; }
+  .tec-grupo ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 7px 12px; }
+  .tec-grupo li { font-family: var(--mono); font-size: 12.5px; color: var(--texto-suave); }
+
+  /* Proyectos */
+  .obras { display: flex; flex-direction: column; gap: 1px; background: var(--borde); border: 1px solid var(--borde); border-radius: 16px; overflow: hidden; }
+  .obra {
+    display: grid; grid-template-columns: 262px 1fr; background: var(--superficie);
+    transition: background .3s;
+  }
+  .obra:hover { background: var(--malva-humo); }
+  @media (max-width: 820px) { .obra { grid-template-columns: 1fr; } }
+
+  .vista { display: flex; align-items: center; justify-content: center; padding: 24px; border-right: 1px solid var(--borde); }
+  @media (max-width: 820px) { .vista { border-right: 0; border-bottom: 1px solid var(--borde); } }
+  .mini {
+    width: 100%; max-width: 200px; border-radius: 8px; overflow: hidden;
+    font-size: 6px; line-height: 1.35; box-shadow: var(--sombra-m);
+    transition: transform .4s cubic-bezier(.2,.7,.3,1);
+  }
+  .obra:hover .mini { transform: translateY(-3px); }
+  .mini .cinta-nav { height: 12px; display: flex; align-items: center; gap: 3px; padding: 0 6px; }
+  .mini .pt { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,.3); }
+  .mini .cuerpo { padding: 8px; display: flex; flex-direction: column; gap: 5px; }
+  .mini .lin { height: 3.5px; border-radius: 2px; }
+  .mini .caja-mini { border-radius: 4px; padding: 5px; display: flex; flex-direction: column; gap: 3px; }
+  .mini .rejilla-mini { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
+  .mini .tarjita { border-radius: 3px; height: 22px; }
+  .mini .tel { width: 42px; height: 78px; border-radius: 7px; padding: 3px; margin: 0 auto; }
+  .mini .tel-pant { height: 100%; border-radius: 5px; padding: 5px; display: flex; flex-direction: column; gap: 3px; }
+
+  .obra-cuerpo { padding: 24px 26px; display: flex; flex-direction: column; gap: 12px; }
+  .obra-alto { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+  .obra h3 { font-family: var(--display); font-size: 21px; font-weight: 500; letter-spacing: -.022em; margin: 0; }
+  .papel { font-family: var(--mono); font-size: 11px; color: var(--malva-hondo); background: var(--malva-tenue); border-radius: 6px; padding: 3px 9px; white-space: nowrap; }
+  .porque { font-size: 15px; color: var(--texto-suave); margin: 0; }
+  .porque b { color: var(--texto); font-weight: 600; }
+  .ficha { display: flex; flex-direction: column; gap: 7px; margin-top: 2px; }
+  .ficha div { display: grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: baseline; }
+  .ficha dt, .ficha .k {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--texto-tenue);
+  }
+  .ficha .v { font-size: 13.5px; color: var(--texto-suave); }
+  .ficha .v code { font-family: var(--mono); font-size: 12.5px; color: var(--malva-hondo); }
+  @media (max-width: 480px) { .ficha div { grid-template-columns: 1fr; gap: 2px; } }
+  .enlaces-obra { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 4px; }
+  .enl { display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 600; color: var(--malva-hondo); }
+  .enl svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transition: transform .26s; }
+  .enl:hover svg { transform: translateX(3px); }
+
+  /* Resultados */
+  .cifras { display: grid; grid-template-columns: repeat(auto-fit, minmax(226px, 1fr)); gap: 1px; background: var(--borde); border: 1px solid var(--borde); border-radius: 14px; overflow: hidden; }
+  .cifra { background: var(--superficie); padding: 20px; transition: background .3s; }
+  .cifra:hover { background: var(--malva-humo); }
+  .cifra .marca { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--texto-tenue); margin: 0 0 10px; }
+  .cifra .dato { font-family: var(--display); font-size: 30px; font-weight: 500; letter-spacing: -.03em; line-height: 1; color: var(--malva-hondo); font-variant-numeric: tabular-nums; }
+  .cifra .dato.chico { font-size: 21px; }
+  .cifra .glosa { font-size: 13px; color: var(--texto-suave); margin: 10px 0 0; line-height: 1.5; }
+
+  /* Trayectoria */
+  .hito { display: grid; grid-template-columns: 128px 1fr; gap: 22px; padding: 15px 0; border-top: 1px solid var(--borde); }
+  .hito:first-child { border-top: 0; padding-top: 0; }
+  .hito .cuando { font-family: var(--mono); font-size: 11.5px; color: var(--texto-tenue); padding-top: 3px; }
+  .hito h4 { font-size: 15px; font-weight: 600; margin: 0 0 3px; }
+  .hito p { font-size: 14px; color: var(--texto-suave); margin: 0; }
+  @media (max-width: 560px) { .hito { grid-template-columns: 1fr; gap: 3px; } }
+
+  /* Cierre */
+  .cierre {
+    margin: 76px 0 0; border: 1px solid var(--borde); border-radius: 18px;
+    padding: 44px 32px; text-align: center; background: var(--superficie);
+  }
+  .cierre h2 { font-family: var(--display); font-weight: 500; font-size: clamp(23px, 3.2vw, 32px); letter-spacing: -.025em; margin: 0 0 12px; text-wrap: balance; }
+  .cierre p { font-size: 16px; color: var(--texto-suave); margin: 0 auto 24px; max-width: 46ch; }
+  .cierre .acciones { justify-content: center; }
+
+  footer.pie {
+    margin-top: 46px; padding: 26px 0 42px; border-top: 1px solid var(--borde);
+    display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: center; justify-content: space-between;
+    font-family: var(--mono); font-size: 12px; color: var(--texto-tenue);
+  }
+  footer.pie a:hover { color: var(--malva-hondo); }
+  .pie-enlaces { display: flex; flex-wrap: wrap; gap: 18px; }
+
+  @media (max-width: 620px) {
+    .saludo { padding: 54px 0 40px; }
+    section.bloque { padding: 54px 0 0; }
+    .cierre { padding: 34px 20px; margin-top: 56px; }
+    .obra-cuerpo { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="aurora" aria-hidden="true"><b></b><b></b></div>
+
+<header class="top">
+  <div class="env">
+    <a class="firma" href="#top">victoria&nbsp;isabel&nbsp;<b>lemus&nbsp;córdova</b></a>
+    <nav>
+      <a href="#tecnologias">Tecnologías</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#resultados">Resultados</a>
+      <a href="#trayectoria">Trayectoria</a>
+      <a href="#estudios">Estudios</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main class="env" id="top">
+
+  <section class="saludo">
+    <p class="hola sube d1">// hola</p>
+    <h1 class="sube d2">
+      Te doy la bienvenida a mi espacio. Soy
+      <b>Victoria Isabel</b>
+    </h1>
+    <p class="intro sube d3">
+      Una entusiasta de la tecnología con un grado en <em>mercadotecnia mención publicidad</em>
+      y estudios en <em>ingeniería de sistemas</em>.
+    </p>
+    <p class="sube d3">
+      Trabajo entre negocio, datos y tecnología. Encargada de producto en Daelead, un SaaS de
+      gestión de leads con IA, y con proyectos propios en desarrollo.
+    </p>
+    <div class="marcadores sube d4">
+      <span><i></i>Santiago de Chile</span>
+      <span><i></i>Producto · Datos · Desarrollo</span>
+      <span><i></i>Español nativo · Inglés B2</span>
+    </div>
+    <div class="acciones sube d5">
+      <a class="btn lleno" href="#proyectos">Ver proyectos
+        <svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn linea" href="https://github.com/Vickybel">GitHub</a>
+      <a class="btn linea" href="https://linkedin.com/in/victoria-lemus">LinkedIn</a>
+    </div>
+  </section>
+
+  <section id="tecnologias">
+    <p class="rotulo">Tecnologías y herramientas</p>
+    <div class="tecs">
+      <article class="tec-grupo">
+        <h3>Lenguajes y marcado</h3>
+        <ul><li>JavaScript</li><li>TypeScript</li><li>Python</li><li>SQL</li><li>HTML</li><li>CSS</li></ul>
+      </article>
+      <article class="tec-grupo">
+        <h3>Desarrollo</h3>
+        <ul><li>React</li><li>React Native</li><li>Next.js</li><li>Astro</li><li>Supabase</li><li>Git / GitHub</li></ul>
+      </article>
+      <article class="tec-grupo">
+        <h3>Producto</h3>
+        <ul><li>Scrum</li><li>Gestión de backlog</li><li>Product thinking</li><li>ClickUp</li><li>Salesforce</li></ul>
+      </article>
+      <article class="tec-grupo">
+        <h3>Datos y reportería</h3>
+        <ul><li>Data Studio</li><li>Power BI</li><li>Tableau</li><li>Google Analytics 4</li><li>Tag Manager</li></ul>
+      </article>
+      <article class="tec-grupo">
+        <h3>Automatización</h3>
+        <ul><li>Claude / MCP</li><li>Zapier</li><li>Apps Script</li></ul>
+      </article>
+      <article class="tec-grupo">
+        <h3>Medios digitales</h3>
+        <ul><li>Google Ads</li><li>Meta Ads</li><li>LinkedIn Ads</li><li>Mailchimp</li><li>CMS</li></ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="bloque" id="proyectos">
+    <p class="rotulo">Proyectos</p>
+    <h2 class="titulo">En qué estoy trabajando</h2>
+
+    <div class="obras">
+
+      <article class="obra">
+        <div class="vista">
+          <div class="mini" style="background:#23243F">
+            <div class="cinta-nav"><span class="pt"></span><span class="pt"></span><span class="pt"></span></div>
+            <div class="cuerpo" style="background:#F4F5FA;margin:0 3px 3px;border-radius:5px">
+              <div class="lin" style="width:78%;height:6px;background:#14152B"></div>
+              <div class="lin" style="width:58%;background:#4A4D63"></div>
+              <div class="caja-mini" style="background:#fff;border:.5px solid rgba(20,21,43,.12);margin-top:2px">
+                <div style="display:flex;align-items:center;gap:3px">
+                  <span style="width:2px;height:8px;border-radius:1px;background:#22a043;display:block"></span>
+                  <span class="lin" style="flex:1;background:#14152B"></span>
+                  <span style="font-size:5px;color:#22a043;font-weight:700">92</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:3px">
+                  <span style="width:2px;height:8px;border-radius:1px;background:#c08a1e;display:block"></span>
+                  <span class="lin" style="flex:1;background:#9599A8"></span>
+                  <span style="font-size:5px;color:#c08a1e;font-weight:700">58</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:3px">
+                  <span style="width:2px;height:8px;border-radius:1px;background:#7c8593;display:block"></span>
+                  <span class="lin" style="flex:1;background:#9599A8"></span>
+                  <span style="font-size:5px;color:#7c8593;font-weight:700">24</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="obra-cuerpo">
+          <div class="obra-alto">
+            <h3>Daelead</h3>
+            <span class="papel">Encargada de producto</span>
+          </div>
+          <p class="porque">
+            SaaS de inteligencia comercial. Capa entre el CRM y el equipo de ventas: conversa con cada
+            lead por correo, WhatsApp y chat, reconoce la acción que anticipa el cierre en su industria
+            y lo entrega al vendedor cuando está listo.
+          </p>
+          <div class="ficha">
+            <div><span class="k">Mi rol</span><span class="v">Backlog, refinamiento de historias, priorización y trade-offs técnicos.</span></div>
+            <div><span class="k">Plataforma</span><span class="v">Monolito en Rails, arquitectura multi-tenant. Scoring por semáforo y especialización por vertical.</span></div>
+            <div><span class="k">Etapa</span><span class="v">Demo en preparación, en búsqueda de primeros clientes.</span></div>
+          </div>
+          <div class="enlaces-obra">
+            <a class="enl" href="obras/daelead.html">Hoja de diseño de la landing <svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+            <a class="enl" href="https://daelead.cl">daelead.cl <svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="obra">
+        <div class="vista">
+          <div class="mini" style="background:#2A2822">
+            <div class="cinta-nav"><span class="pt"></span><span class="pt"></span><span class="pt"></span></div>
+            <div class="cuerpo" style="background:#FBFAF7;margin:0 3px 3px;border-radius:5px">
+              <div class="tel" style="background:#2A2822">
+                <div class="tel-pant" style="background:#FBFAF7">
+                  <div class="lin" style="width:60%;background:#4A6B4F"></div>
+                  <div class="caja-mini" style="background:#fff;border:.5px solid #E3DFD5">
+                    <div class="lin" style="width:80%;background:#CFC9BB"></div>
+                    <div class="lin" style="width:55%;background:#E3DFD5"></div>
+                  </div>
+                  <div class="caja-mini" style="background:#E6EDE4;border:.5px solid #4A6B4F">
+                    <div class="lin" style="width:70%;background:#4A6B4F"></div>
+                    <div class="lin" style="width:45%;background:#8FB795"></div>
+                  </div>
+                  <div class="caja-mini" style="background:#fff;border:.5px solid #E3DFD5">
+                    <div class="lin" style="width:65%;background:#CFC9BB"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="obra-cuerpo">
+          <div class="obra-alto">
+            <h3>Almácigo</h3>
+            <span class="papel">Diseño y desarrollo</span>
+          </div>
+          <p class="porque">
+            Aplicación móvil de seguimiento de embarazo y crecimiento infantil, con registro compartido
+            entre familiares. El punto de partida fue mi sobrina, que nace el próximo año en Venezuela.
+          </p>
+          <div class="ficha">
+            <div><span class="k">Stack</span><span class="v">React Native con Expo, TypeScript, Supabase.</span></div>
+            <div><span class="k">Decisión</span><span class="v">Sistema de diseño en <code>src/constants/theme.ts</code>, del que sale toda la interfaz.</span></div>
+            <div><span class="k">Etapa</span><span class="v">En desarrollo.</span></div>
+          </div>
+          <div class="enlaces-obra">
+            <a class="enl" href="obras/almacigo.html">Hoja de diseño <svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="obra">
+        <div class="vista">
+          <div class="mini" style="background:#2A1F16">
+            <div class="cinta-nav"><span class="pt"></span><span class="pt"></span><span class="pt"></span></div>
+            <div class="cuerpo" style="background:#FAF4E9;margin:0 3px 3px;border-radius:5px">
+              <div class="lin" style="width:72%;height:6px;background:#3B2A1C"></div>
+              <div class="lin" style="width:52%;background:#94806B"></div>
+              <div style="display:flex;gap:3px;margin-top:2px">
+                <span class="lin" style="width:20px;height:7px;border-radius:4px;background:#3B2A1C"></span>
+                <span class="lin" style="width:24px;height:7px;border-radius:4px;background:#EADFCB"></span>
+                <span class="lin" style="width:22px;height:7px;border-radius:4px;background:#EADFCB"></span>
+              </div>
+              <div class="rejilla-mini" style="margin-top:3px">
+                <div class="tarjita" style="background:#2F6B43"></div>
+                <div class="tarjita" style="background:#B0497A"></div>
+                <div class="tarjita" style="background:#C4623A"></div>
+                <div class="tarjita" style="background:#5B4B8A"></div>
+              </div>
+              <div class="rejilla-mini">
+                <div class="tarjita" style="background:#8A6D3B"></div>
+                <div class="tarjita" style="background:#2C7A7B"></div>
+                <div class="tarjita" style="background:#E0992E"></div>
+                <div class="tarjita" style="background:#D2622F"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="obra-cuerpo">
+          <div class="obra-alto">
+            <h3>Novelas</h3>
+            <span class="papel">Diseño y desarrollo</span>
+          </div>
+          <p class="porque">
+            Plataforma de lectura por suscripción: catálogo, lector, publicación por capítulos y cobro
+            mensual. Surgió de un encargo de mi mamá, que escribe y quería ordenar y monetizar sus obras.
+          </p>
+          <div class="ficha">
+            <div><span class="k">Stack</span><span class="v">Next.js con App Router, Supabase, Tiptap, Mercado Pago.</span></div>
+            <div><span class="k">Decisión</span><span class="v">El acceso a cada capítulo se resuelve en el servidor; el texto bloqueado no llega al navegador.</span></div>
+            <div><span class="k">Etapa</span><span class="v">MVP en desarrollo.</span></div>
+          </div>
+          <div class="enlaces-obra">
+            <a class="enl" href="obras/novelas.html">Hoja de diseño <svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="obra">
+        <div class="vista">
+          <div class="mini" style="background:#3A1B2C">
+            <div class="cinta-nav"><span class="pt"></span><span class="pt"></span><span class="pt"></span></div>
+            <div class="cuerpo" style="background:#FDF7F8;margin:0 3px 3px;border-radius:5px">
+              <div class="lin" style="width:70%;height:6px;background:#2A1220"></div>
+              <div class="lin" style="width:50%;background:#6B5060"></div>
+              <div class="caja-mini" style="background:#fff;border:.5px solid #F7E9EE;margin-top:2px">
+                <div style="display:flex;align-items:flex-end;gap:2px;height:20px">
+                  <span style="flex:1;height:32%;background:#FCE7F3;border-radius:1px"></span>
+                  <span style="flex:1;height:44%;background:#FCE7F3;border-radius:1px"></span>
+                  <span style="flex:1;height:39%;background:#FBCFE8;border-radius:1px"></span>
+                  <span style="flex:1;height:57%;background:#F9A8D4;border-radius:1px"></span>
+                  <span style="flex:1;height:70%;background:#F472B6;border-radius:1px"></span>
+                  <span style="flex:1;height:84%;background:#EC4899;border-radius:1px"></span>
+                  <span style="flex:1;height:100%;background:#BE185D;border-radius:1px"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="obra-cuerpo">
+          <div class="obra-alto">
+            <h3>victoriaisabel.cl</h3>
+            <span class="papel">Diseño y desarrollo</span>
+          </div>
+          <p class="porque">
+            Sitio de consultoría en marketing digital: servicios, casos con sus resultados y captación
+            de contactos.
+          </p>
+          <div class="ficha">
+            <div><span class="k">Stack</span><span class="v">Astro 5, Tailwind, contenido en Markdown, Netlify.</span></div>
+            <div><span class="k">Decisión</span><span class="v">Los casos viven como datos en <code>src/specifications/work.ts</code> y las páginas los recorren.</span></div>
+            <div><span class="k">Medición</span><span class="v">Tag Manager y GA4 con un patrón único de reenvío de eventos del <code>dataLayer</code>.</span></div>
+          </div>
+          <div class="enlaces-obra">
+            <a class="enl" href="obras/victoriaisabel.html">Hoja de diseño <svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+            <a class="enl" href="https://victoriaisabel.cl">victoriaisabel.cl <svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="bloque" id="resultados">
+    <p class="rotulo">Resultados en marketing y datos</p>
+    <h2 class="titulo">Seis años gestionando inversión digital</h2>
+    <div class="cifras">
+      <article class="cifra">
+        <p class="marca">Descorcha · Chile</p>
+        <p class="dato">ROAS 8</p>
+        <p class="glosa">60% de aporte a las ventas del ecommerce desde SEM.</p>
+      </article>
+      <article class="cifra">
+        <p class="marca">Descorcha · Brasil</p>
+        <p class="dato">ROAS 3</p>
+        <p class="glosa">40% de aporte a ventas desde SEM.</p>
+      </article>
+      <article class="cifra">
+        <p class="marca">Centro del Vino</p>
+        <p class="dato">ROAS 8</p>
+        <p class="glosa">50% de aporte a ventas de tickets de enoturismo, a nivel global.</p>
+      </article>
+      <article class="cifra">
+        <p class="marca">Copeval</p>
+        <p class="dato chico">ROAS sobre 10</p>
+        <p class="glosa">Ecommerce, con el mismo presupuesto de campañas anteriores.</p>
+      </article>
+      <article class="cifra">
+        <p class="marca">Guillermo Morales</p>
+        <p class="dato">30%</p>
+        <p class="glosa">Tasa de cierre sobre leads brutos en Peugeot, Citroën y Opel.</p>
+      </article>
+      <article class="cifra">
+        <p class="marca">Netline</p>
+        <p class="dato">30%</p>
+        <p class="glosa">De las ventas del área comercial, desde el canal digital.</p>
+      </article>
+      <article class="cifra">
+        <p class="marca">Netline · Calidad de leads</p>
+        <p class="dato">60%</p>
+        <p class="glosa">De leads de perfil empresa, desde un 70% de perfil hogar.</p>
+      </article>
+      <article class="cifra">
+        <p class="marca">Chilexpress</p>
+        <p class="dato chico">Adopción digital</p>
+        <p class="glosa">Requisitos para las apps y sitios de courier y envío de dinero, junto a producto y TI.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="bloque" id="trayectoria">
+    <p class="rotulo">Trayectoria</p>
+    <div>
+      <article class="hito">
+        <span class="cuando">Sept. 2024 — hoy</span>
+        <div><h4>Consultora de Marketing Freelance · Fango Marketing</h4><p>Campañas digitales para ecommerce y automotriz, con automatizaciones en Zapier entre las plataformas de pauta y los sistemas comerciales de cada cliente.</p></div>
+      </article>
+      <article class="hito">
+        <span class="cuando">Feb. 2025 — Ene. 2026</span>
+        <div><h4>Paid Media Analyst · Viña Concha y Toro</h4><p>Campañas e inversión digital para Descorcha en Chile, Brasil y México, y para el Centro del Vino a nivel global.</p></div>
+      </article>
+      <article class="hito">
+        <span class="cuando">May. 2023 — Mar. 2025</span>
+        <div><h4>Consultora de Marketing Freelance · Netline Holding</h4><p>Optimización de campañas, administración web y construcción de la infraestructura de datos en Salesforce que dio trazabilidad al canal.</p></div>
+      </article>
+      <article class="hito">
+        <span class="cuando">May. 2023 — Nov. 2023</span>
+        <div><h4>Especialista Canales Digitales y Omnicanalidad · Chilexpress</h4><p>Levantamiento de requisitos para las aplicaciones y sitios de courier y envío de dinero, junto a producto y TI. Análisis con SQL para segmentar clientes y testing de flujos de navegación.</p></div>
+      </article>
+      <article class="hito">
+        <span class="cuando">Mar. 2022 — Abr. 2023</span>
+        <div><h4>Analista de Marketing · Netline Holding</h4><p>Campañas de adquisición B2B, coordinación con agencias y reportes de desempeño al directorio.</p></div>
+      </article>
+      <article class="hito">
+        <span class="cuando">Jul. 2021 — Feb. 2022</span>
+        <div><h4>Especialista SEO/SEM · Netline Holding</h4><p>Mejoras en la arquitectura del sitio web, con ajustes de código, para el rendimiento del canal digital.</p></div>
+      </article>
+      <article class="hito">
+        <span class="cuando">Mar. 2020 — Dic. 2020</span>
+        <div><h4>Community Manager · Dayanani Prestige Group</h4><p>Canales digitales y puesta en marcha del ecommerce para marcas de lujo y joyería.</p></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="bloque" id="estudios">
+    <p class="rotulo">Estudios</p>
+    <div>
+      <article class="hito">
+        <span class="cuando">2019 — 2024</span>
+        <div><h4>Ingeniería de Sistemas · Universidad Bicentenaria de Aragua</h4><p>Egresada. Modalidad online, Venezuela.</p></div>
+      </article>
+      <article class="hito">
+        <span class="cuando">2020</span>
+        <div><h4>Desarrollo web full stack · 4Geeks Academy</h4><p>Bootcamp de seis meses. JavaScript, React, Python y Flask.</p></div>
+      </article>
+      <article class="hito">
+        <span class="cuando">2014 — 2017</span>
+        <div><h4>Mercadotecnia, mención Publicidad · Instituto Universitario de Mercadotecnia</h4><p>Titulada. Caracas, Venezuela.</p></div>
+      </article>
+      <article class="hito">
+        <span class="cuando">2012 — 2016</span>
+        <div><h4>Licenciatura en Matemáticas · Universidad Simón Bolívar</h4><p>Opción Estadística y Matemáticas Computacionales. Caracas, Venezuela.</p></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="cierre" id="contacto">
+    <h2>Conversemos</h2>
+    <p>Producto, datos o desarrollo.</p>
+    <div class="acciones">
+      <a class="btn lleno" id="btn-correo" href="https://linkedin.com/in/victoria-lemus"
+         data-u="dmlja3liZWwxOTk1" data-d="Z21haWwuY29t"><span id="txt-correo">Escríbeme</span>
+        <svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn linea" href="https://linkedin.com/in/victoria-lemus">LinkedIn</a>
+      <a class="btn linea" href="https://github.com/Vickybel">GitHub</a>
+    </div>
+  </section>
+
+  <footer class="pie">
+    <span>Victoria Isabel Lemus Córdova · Santiago de Chile</span>
+    <span class="pie-enlaces">
+      <a href="https://github.com/Vickybel">github.com/Vickybel</a>
+      <a href="https://linkedin.com/in/victoria-lemus">linkedin</a>
+      <a href="https://victoriaisabel.cl">victoriaisabel.cl</a>
+    </span>
+  </footer>
+
+</main>
+
+<script>
+  // La dirección no viaja escrita en el HTML: se arma aquí, para que los
+  // rastreadores de correo no la recojan. Sin JavaScript, el botón lleva a LinkedIn.
+  (function () {
+    var b = document.getElementById('btn-correo');
+    if (!b) return;
+    try {
+      var c = atob(b.dataset.u) + String.fromCharCode(64) + atob(b.dataset.d);
+      b.href = 'mailto:' + c;
+      document.getElementById('txt-correo').textContent = c;
+    } catch (e) { /* se queda el enlace a LinkedIn */ }
+  })();
+</script>
+
+</body>
+</html>
